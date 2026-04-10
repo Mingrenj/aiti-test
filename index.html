@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AITI 性格测试</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 开始界面 -->
+  <div id="start-screen" class="screen">
+    <div class="card">
+      <p class="intro-text">SBTI卡的不行来做我的AITI吧。</p>
+      <button id="start-btn" class="btn-primary">开始测试</button>
+    </div>
+  </div>
+  <!-- 答题界面 -->
+  <div id="quiz-screen" class="screen hidden">
+    <div class="card">
+      <div id="progress">
+        第 <span id="question-number">1</span> / <span id="total-questions">48</span> 题
+      </div>
+      <div id="question-text"></div>
+      <div id="options" class="options"></div>
+      <div class="navigation">
+        <button id="prev-btn" class="btn-secondary">上一题</button>
+        <button id="next-btn" class="btn-primary">下一题</button>
+      </div>
+    </div>
+  </div>
+  <!-- 结果界面 -->
+  <div id="result-screen" class="screen hidden">
+    <div class="card result-card">
+      <h2 id="result-title"></h2>
+      <div id="result-image-container">
+        <img id="result-image" src="" alt="角色图片" />
+      </div>
+      <p id="result-tagline" class="tagline"></p>
+      <p class="match-info">匹配度91%·精准命中78/91维</p>
+      <div id="result-description"></div>
+      <button id="restart-btn" class="btn-secondary">重新测试</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
