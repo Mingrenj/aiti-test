@@ -30,17 +30,40 @@
   </div>
   <!-- 结果界面 -->
   <div id="result-screen" class="screen hidden">
-    <div class="card result-card">
-      <h2 id="result-title"></h2>
-      <div id="result-image-container">
-        <img id="result-image" src="" alt="角色图片" />
-      </div>
-      <p id="result-tagline" class="tagline"></p>
-      <p class="match-info">匹配度91%·精准命中78/91维</p>
-      <div id="result-description"></div>
-      <button id="restart-btn" class="btn-secondary">重新测试</button>
+    <div class="result-layout">
+      <section class="card result-card identity-card">
+        <p class="result-kicker">你的人格类型是：</p>
+        <h1 id="result-title" class="result-name"></h1>
+        <p id="result-name-en" class="result-name-en"></p>
+        <div id="result-image-container" class="result-image-container">
+          <img id="result-image" src="" alt="角色图片" />
+        </div>
+        <p id="result-tagline" class="tagline"></p>
+      </section>
+
+      <section class="card result-card details-card">
+        <p class="section-label">你的主类型</p>
+        <h2 id="result-detail-title" class="result-detail-title"></h2>
+        <div class="result-meta">
+          <p id="result-match" class="match-pill"></p>
+          <p id="result-completion" class="completion-text"></p>
+        </div>
+        <div class="description-block">
+          <h3 class="detail-subtitle">角色简介</h3>
+          <p id="result-description" class="result-description"></p>
+        </div>
+        <div>
+          <h3 class="detail-subtitle">关键词</h3>
+          <div id="result-traits" class="traits"></div>
+        </div>
+        <button id="restart-btn" class="btn-secondary">重新测试</button>
+      </section>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script>
+    const runtimeScript = document.createElement('script');
+    runtimeScript.src = `script.js?v=${Date.now()}`;
+    document.body.appendChild(runtimeScript);
+  </script>
 </body>
 </html>

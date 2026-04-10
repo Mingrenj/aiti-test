@@ -1,9 +1,10 @@
-//// Questions and role mapping for the AITI personality test
+// Questions and role mapping for the AITI personality test
 
 // Each question has:
 // - text: the statement presented to the user
 // - role: which character the question contributes to
 // - reverse: if true, lower selections map to higher scores (reverse scoring)
+// - effects: optional extra role weights for question-specific cross influence
 const QUESTIONS = [
   // 月半猫 - 深情胖胖型
   { text: '如果我喜欢一个人，我会像守着冰箱里最后一块小蛋糕一样，嘴上说随便，心里其实谁也不让碰。', role: '月半猫', reverse: false },
@@ -71,90 +72,164 @@ const QUESTIONS = [
   { text: '我花东西一向主打一个今朝有酒今朝醉，基本不做任何长期打算。', role: '南山校长', reverse: true }
 ];
 
-// Role metadata: tagline (short sentence), description (can be edited later), and placeholder image path.
-// TODO: Replace `description` and `image` values with your own content and images when polishing.
 const ROLE_INFO = {
   '月半猫': {
+    englishName: 'Half Moon Cat',
     tagline: '你根本不懂得不懂得爱我',
-    description: '在此填写月半猫的角色简介，可以描述他的性格特点、优势、弱点等。',
+    description: '你看起来松弛、圆钝、爱吃爱睡，像个对世界没什么攻击性的小肉球，但真正靠近后才会发现，你其实是情感浓度很高的人。你不太擅长把爱说得花里胡哨，却很会用陪伴、偏爱和笨拙真诚去认真喜欢一个人。外表软乎乎，内心却是个稳定又长情的深情怪。你属于慢热但很容易认真上头的类型，嘴上爱装随便，心里却把偏爱和保护欲存得很满。一旦认定了人或关系，细节里的照顾和黏度都会明显拉高。',
+    traits: ['慢热上头', '嘴硬心软', '护短型偏爱'],
     image: ''
   },
   '奶龙': {
-    tagline: '别问我问题，我会先给你一个仰天大笑',
-    description: '在此填写奶龙的角色简介。',
+    englishName: 'NAI Loong',
+    tagline: ' 我是奶龙，我才是奶龙，哈哈哈哈，我是奶虫',
+    description: '你的人生逻辑不是先解释，而是先笑。越离谱的事你越想哈哈两声，越尴尬的场面你越能靠情绪把气氛带活。你不一定是真的没心没肺，只是特别擅长把沉重变轻、把紧张变松，让身边的人觉得天塌下来也可以先笑一会儿再说。',
+    traits: ['气氛救火员', '笑点驱动', '临场反应快'],
     image: ''
   },
   '奶娃': {
-    tagline: '萌萌哒，世界上最可爱的宝宝是谁',
-    description: '在此填写奶娃的角色简介。',
+    englishName: 'NAI Baby',
+    tagline: '我的真的特别爱你，为什么你会落泪',
+    description: '你天生带着一种“我就是最可爱的宝宝”的气场，讨喜、黏人、会撒娇，也很懂得把自己的可爱变成社交通行证。你并不是真的单纯，而是非常清楚自己的魅力在哪里，知道柔软和被偏爱本身就是一种力量。你的人设是宝宝，但你的可爱从来不是白给的。',
+    traits: ['软萌亲近', '熟人加倍', '天生有保护欲'],
     image: ''
   },
   '安迪': {
+    englishName: 'Hou la gangbadei Andy',
     tagline: '强者不留一兵一卒，悟者不伤一草一木',
-    description: '在此填写安迪的角色简介。',
+    description: '你像是把战神和高僧装进了同一个身体里，平时通透清醒，关键时刻锋利果断，偶尔情绪一上头又会突然发癫。你不是矛盾，而是层次很多，知道什么时候该狠、什么时候该慈悲、什么时候该出手、什么时候该旁观。你危险，但也异常清醒。',
+    traits: ['反差极强', '能打能讲', '临界感很重'],
     image: ''
   },
   '猪妞': {
-    tagline: '我就是装作抑郁症，为了给自己一个吃了睡睡醒了吃的理由',
-    description: '在此填写猪妞的角色简介。',
+    englishName: 'Zhu Niu',
+    tagline: '仙女下凡',
+    description: '你的人生态度很简单：困了就睡，饿了就吃，累了就先缓一缓。别人以为你在摆烂，你却觉得自己只是顺应生命本能，把压力化成休眠，把焦虑化成放空，把现实化成“先活着再说”。你不装高能，也不硬撑积极，但你会让人明白，慢一点也没关系',
+    traits: ['续命优先', '节律自保', '懒感很诚实'],
     image: ''
   },
   '家豪': {
-    tagline: '别人都以为我是个装货，但我在我自己的世界里是主角',
-    description: '在此填写家豪的角色简介。',
+    englishName: 'rich family',
+    tagline: '十年前的仇难道不报了吗',
+    description: '你天生自带主角滤镜，表演欲和存在感都很强，习惯把生活过成舞台，把行动做成名场面。别人觉得你在装，你却觉得自己只是正常闪耀，因为你真心相信自己就是故事里的主角。你需要被看见、被记住，也需要这个世界承认你确实很有戏。',
+    traits: ['主角滤镜', '镜头感强', '表现欲在线'],
     image: ''
   },
   '刀盾': {
-    tagline: '没有特殊含义，但是特别洗脑',
-    description: '在此填写刀盾的角色简介。',
+    englishName: 'what dog doing',
+    tagline: 'what dog doing',
+    description: '你不靠深刻取胜，而是靠节奏、记忆点和传播力取胜。你总能说出一些乍听没意义、细想没逻辑、但偏偏会在别人脑子里循环播放很久的话。你的人格像一句神秘口号，莫名其妙却极难忘记，最大的杀伤力就是让人不知不觉被你带进频道。',
+    traits: ['复读感强', '记忆点高', '表达压过逻辑'],
     image: ''
   },
   '十年孤竹': {
-    tagline: '扮竹子坚韧的品质，屹立不倒',
-    description: '在此填写十年孤竹的角色简介。',
+    englishName: 'Ten years Bamboo',
+    tagline: '十年孤竹的话语，是撑杆跳',
+    description: '你表面像竹子一样挺拔、稳定、温和无害，甚至带着点前辈气质，但真正到了博弈场上，你却是那种很会藏招、很懂拿捏分寸的人。你不喜欢高调地赢，更偏爱不动声色地赢，用柔中带锋的方式把局面掌握在自己手里。你不是爱使坏，只是太会优雅地取胜。',
+    traits: ['外淡内深', '擅长布局', '赢得很安静'],
     image: ''
   },
   '胡吒': {
-    tagline: '可爱的魔丸，灵珠也好，魔丸也罢，能有我阴吗',
-    description: '在此填写胡吒的角色简介。',
+    englishName: 'Hu Cha',
+    tagline: '怎么一半哪吒，一般胡巴啊',
+    description: '你看起来可爱、灵动、像个有点任性的小魔丸，但真正相处下来，别人很快就会发现你脑子活、反应快、心眼也不少。你很懂反差感的魅力，擅长在卖萌和腹黑之间来回切换，让人一边觉得你好可爱，一边又隐隐觉得你不好惹。越可爱，越不能低估你。',
+    traits: ['甜里藏刀', '反差吸引', '悄悄掌控'],
     image: ''
   },
   '高雅人士': {
-    tagline: '经常借高雅之名做一些低俗的事情',
-    description: '在此填写高雅人士的角色简介。',
+    englishName: 'Gentleman',
+    tagline: '高雅人士 品鉴中，男人再富也要...',
+    description: '你最大的本事，就是把离谱包装得很高级。你可以一边戴着墨镜、一边说着像模像样的文艺歪理，转头又做出很贱、很俗、很接地气的事，但偏偏让人越想越觉得合理。你不是单纯不正经，而是把不正经经营成了一种风格，嫌弃归嫌弃，却很难真的讨厌你。',
+    traits: ['包装能力强', '气质先行', '歪理也顺耳'],
     image: ''
   },
   '牢大': {
-    tagline: '永远的逆风局，但微微一笑就有无限能量',
-    description: '在此填写牢大的角色简介。',
+    englishName: 'Lao big',
+    tagline: 'WHAT CAN I SAY',
+    description: '你像那种永远活在逆风局里的人，但奇怪的是，局面越难你反而越稳。你不一定没有情绪，只是特别会把压力消化成支撑别人的力量，只要身边的人慌了，你就会本能地说一句“别怕，有我在”。你未必顺风顺水，但总能在风里站住，也让别人跟着站住。',
+    traits: ['逆风不垮', '先稳别人', '扛事型人格'],
     image: ''
   },
   '鹿先生': {
-    tagline: '守时，快速，大量',
-    description: '在此填写鹿先生的角色简介。',
+    englishName: 'Señor Deer',
+    tagline: '到时间了',
+    description: '你不喜欢拖拉，不喜欢空转，不喜欢把时间浪费在无止境的犹豫里。你讲守时、讲速度、讲产出，别人还在讨论的时候，你可能已经做完了一轮并开始改第二版。你相信很多问题不是难，而是慢，所以你的魅力从来不只是会想，而是能立刻推进、迅速闭环。',
+    traits: ['执行力爆表', '先跑起来', '抗拖延强'],
     image: ''
   },
   '帝哥': {
-    tagline: '经常打抱不平，往往拥有实力但是却喜欢管小事情',
-    description: '在此填写帝哥的角色简介。',
+    englishName: 'GOD',
+    tagline: '天道降临',
+    description: '你看不惯的事就想管，遇到不合理的人和事总是忍不住插手，尤其受不了装腔作势、虚张声势和低级错误。你有判断、有实力，也有一点脾气，既会替人打抱不平，也会毫不留情地指出问题。你像个随时在线的民间纪委，正义感和压迫感同时拉满。。',
+    traits: ['正义感高', '嘴比脑快', '拆台很准'],
     image: ''
   },
   '鳄鱼': {
-    tagline: '一招鲜吃遍天，墨守陈规但是却巧避锋芒',
-    description: '在此填写鳄鱼的角色简介。',
+    englishName: 'Hungry fish',
+    tagline: '你鳄鱼叔叔我几亿年前就这样了',
+    description: '你不是花样很多的人，你更相信熟练、重复、经验和长期积累的力量。别人觉得你保守，你却知道自己是在规矩里藏智慧、在稳定中保实力。你不迷信新奇，也不急着出风头，因为你明白真正能让人活到最后的，往往不是最惊艳的那套，而是最耐用的那套。',
+    traits: ['守拙耐久', '偏爱老办法', '稳过花活'],
     image: ''
   },
   '日记猫': {
-    tagline: '行为和语言都十分的 open',
-    description: '在此填写日记猫的角色简介。',
+    englishName: 'Diary CAT WMR',
+    tagline: '这是开发者形象',
+    description: '你说话和行为都很 open，很会制造暧昧，也很容易让人觉得你风流、会撩、边界很松。但再往里走一点，就会发现你并没有表面那么放得开，很多外放和轻佻其实是在掩饰内心的压抑、拧巴和犹豫。你表面像个浪子，内心却像一团没解开的线。',
+    traits: ['氛围感强', '开放外壳', '边界藏得深'],
     image: ''
   },
   '南山校长': {
-    tagline: '资本家的顶级代表，一毛不拔的铁公鸡',
-    description: '在此填写南山校长的角色简介。',
+    englishName: 'South mountains headmaster',
+    tagline: '夏天到了，记得开空调',
+    description: '你是天生的资源经营者，务实、精明、对钱、机会和筹码都异常敏感。别人花钱像消费，你花钱像投资；别人囤快乐，你囤实力。你不喜欢浪费，也不喜欢无效扩张，更习惯把力量集中到最有价值的地方。你的人生信条很明确：能攒下来的，最后都会变成底气。',
+    traits: ['资源敏感', '长期盘算', '收束力强'],
     image: ''
   }
 };
+
+const SCALE_LABELS = [
+  '非常不同意',
+  '不同意',
+  '略微不同意',
+  '中立 / 不确定',
+  '略微同意',
+  '同意',
+  '非常同意'
+];
+
+const PLACEHOLDER_PALETTES = [
+  ['#dff4ff', '#7fc8ff', '#2f78ff'],
+  ['#f2ebff', '#c6a7ff', '#6d45f5'],
+  ['#fff0d8', '#ffc982', '#ff9856'],
+  ['#def7ec', '#79d8a8', '#258a5a'],
+  ['#ffe4e7', '#ff9eb0', '#e55d7a'],
+  ['#e8f4ff', '#8ec2ff', '#3478c2']
+];
+
+// Primary role questions always dominate; cross-role influence only refines the edges.
+const PRIMARY_ROLE_WEIGHT = 6;
+
+// Derived from the role descriptions: each role can lightly push or suppress nearby roles.
+const ROLE_CROSS_WEIGHTS = {
+  '月半猫': { '奶娃': 0.8, '牢大': 0.7, '日记猫': -1.3, '胡吒': -0.6 },
+  '奶龙': { '家豪': 0.5, '高雅人士': 0.6, '十年孤竹': -0.5, '鳄鱼': -0.8 },
+  '奶娃': { '月半猫': 0.7, '胡吒': 0.4, '安迪': -0.9, '帝哥': -0.6 },
+  '安迪': { '帝哥': 0.6, '牢大': 0.5, '奶娃': -0.9, '猪妞': -0.7 },
+  '猪妞': { '月半猫': 0.3, '鳄鱼': 0.4, '鹿先生': -1.4, '家豪': -0.7 },
+  '家豪': { '奶龙': 0.4, '高雅人士': 0.7, '鳄鱼': -0.9, '猪妞': -0.6 },
+  '刀盾': { '奶龙': 0.6, '家豪': 0.5, '鳄鱼': -0.8, '十年孤竹': -0.6 },
+  '十年孤竹': { '南山校长': 0.6, '胡吒': 0.5, '帝哥': -0.9, '奶龙': -0.6 },
+  '胡吒': { '日记猫': 0.8, '十年孤竹': 0.5, '月半猫': -0.9, '奶娃': -0.4 },
+  '高雅人士': { '家豪': 0.7, '刀盾': 0.5, '鳄鱼': -0.8, '帝哥': -0.5 },
+  '牢大': { '月半猫': 0.6, '帝哥': 0.6, '猪妞': -0.8, '日记猫': -0.7 },
+  '鹿先生': { '帝哥': 0.4, '南山校长': 0.5, '猪妞': -1.4, '鳄鱼': -0.7 },
+  '帝哥': { '牢大': 0.7, '安迪': 0.5, '胡吒': -0.8, '十年孤竹': -0.9 },
+  '鳄鱼': { '南山校长': 0.4, '猪妞': 0.3, '家豪': -0.8, '鹿先生': -0.6 },
+  '日记猫': { '胡吒': 0.8, '高雅人士': 0.4, '月半猫': -1.3, '牢大': -0.6 },
+  '南山校长': { '十年孤竹': 0.6, '鳄鱼': 0.4, '奶娃': -0.7, '月半猫': -0.5 }
+};
+
+const RESULT_EASTER_EGG_TEXT = '匹配度 91% · 倾向得分 78/91';
 
 // Global state
 let shuffledQuestions = [];
@@ -174,34 +249,42 @@ const totalQuestionsEl = document.getElementById('total-questions');
 const questionTextEl = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options');
 const resultTitleEl = document.getElementById('result-title');
+const resultNameEnEl = document.getElementById('result-name-en');
+const resultDetailTitleEl = document.getElementById('result-detail-title');
 const resultTaglineEl = document.getElementById('result-tagline');
 const resultDescriptionEl = document.getElementById('result-description');
+const resultTraitsEl = document.getElementById('result-traits');
+const resultMatchEl = document.getElementById('result-match');
+const resultCompletionEl = document.getElementById('result-completion');
 const resultImageEl = document.getElementById('result-image');
 
 // Event listeners
 startBtn.addEventListener('click', startTest);
 nextBtn.addEventListener('click', () => {
+  if (answers[currentIndex] === null) {
+    alert('请先选择一个选项！');
+    return;
+  }
+
   if (currentIndex < shuffledQuestions.length - 1) {
     currentIndex++;
     renderQuestion();
-  } else {
-    // Ensure last question answered before showing result
-    if (answers[currentIndex] === null) {
-      alert('请先选择一个选项！');
-      return;
-    }
-    showResult();
+    return;
   }
+
+  showResult();
 });
+
 prevBtn.addEventListener('click', () => {
   if (currentIndex > 0) {
     currentIndex--;
     renderQuestion();
   }
 });
+
 restartBtn.addEventListener('click', () => {
-  // restart the test from the beginning
   resultScreen.classList.add('hidden');
+  quizScreen.classList.add('hidden');
   startScreen.classList.remove('hidden');
 });
 
@@ -215,89 +298,317 @@ function shuffle(array) {
 }
 
 function startTest() {
-  // Initialize state
   shuffledQuestions = shuffle(QUESTIONS);
   currentIndex = 0;
   answers = new Array(shuffledQuestions.length).fill(null);
   totalQuestionsEl.textContent = shuffledQuestions.length;
-  // Hide start screen, show quiz screen
   startScreen.classList.add('hidden');
   resultScreen.classList.add('hidden');
   quizScreen.classList.remove('hidden');
-  // Render the first question
   renderQuestion();
 }
 
 function renderQuestion() {
-  const q = shuffledQuestions[currentIndex];
+  const question = shuffledQuestions[currentIndex];
   questionNumberEl.textContent = currentIndex + 1;
-  questionTextEl.textContent = q.text;
-  // Render options
+  questionTextEl.textContent = question.text;
   optionsContainer.innerHTML = '';
-  const labels = [
-    '非常不同意',
-    '不同意',
-    '略微不同意',
-    '中立 / 不确定',
-    '略微同意',
-    '同意',
-    '非常同意'
-  ];
-  for (let i = 1; i <= 7; i++) {
-    const optionDiv = document.createElement('div');
-    optionDiv.classList.add('option');
-    // If this option is currently selected, mark it
-    if (answers[currentIndex] === i) {
-      optionDiv.classList.add('selected');
-    }
-    optionDiv.textContent = labels[i - 1];
-    optionDiv.addEventListener('click', () => {
-      // Save answer and mark selection
+
+  for (let i = 1; i <= SCALE_LABELS.length; i++) {
+    const optionButton = document.createElement('button');
+    optionButton.type = 'button';
+    optionButton.classList.add('option');
+    optionButton.textContent = SCALE_LABELS[i - 1];
+
+    const isSelected = answers[currentIndex] === i;
+    optionButton.classList.toggle('selected', isSelected);
+    optionButton.setAttribute('aria-pressed', String(isSelected));
+
+    optionButton.addEventListener('click', () => {
       answers[currentIndex] = i;
-      // Clear other selected states
-      const allOptions = optionsContainer.querySelectorAll('.option');
-      allOptions.forEach(opt => opt.classList.remove('selected'));
-      optionDiv.classList.add('selected');
+      updateSelectedOption(i);
+      updateNavigationState();
     });
-    optionsContainer.appendChild(optionDiv);
+
+    optionsContainer.appendChild(optionButton);
   }
-  // Update button visibility
+
+  updateNavigationState();
+}
+
+function updateSelectedOption(selectedValue) {
+  const allOptions = optionsContainer.querySelectorAll('.option');
+  allOptions.forEach((option, index) => {
+    const isSelected = index + 1 === selectedValue;
+    option.classList.toggle('selected', isSelected);
+    option.setAttribute('aria-pressed', String(isSelected));
+  });
+}
+
+function updateNavigationState() {
   prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = answers[currentIndex] === null;
   nextBtn.textContent = currentIndex < shuffledQuestions.length - 1 ? '下一题' : '查看结果';
 }
 
-function calculateScores() {
-  const scores = {};
-  // Initialize all roles to 0
-  Object.keys(ROLE_INFO).forEach(role => (scores[role] = 0));
-  for (let i = 0; i < shuffledQuestions.length; i++) {
-    const question = shuffledQuestions[i];
-    const ans = answers[i];
-    if (ans === null) continue;
-    let score = question.reverse ? (8 - ans) : ans;
-    scores[question.role] += score;
-  }
-  return scores;
+function hasUnansweredQuestions() {
+  return answers.some(answer => answer === null);
 }
 
-function showResult() {
-  const scores = calculateScores();
-  // Determine primary and secondary roles
-  const sortedRoles = Object.keys(scores).sort((a, b) => scores[b] - scores[a]);
-  const primaryRole = sortedRoles[0];
-  // For demonstration, second role is not used, but can be retrieved via sortedRoles[1]
-  // Populate result card
-  const roleInfo = ROLE_INFO[primaryRole];
-  resultTitleEl.textContent = `${primaryRole}`;
-  resultTaglineEl.textContent = roleInfo.tagline;
-  resultDescriptionEl.textContent = roleInfo.description;
-  if (roleInfo.image) {
-    resultImageEl.src = roleInfo.image;
-    resultImageEl.alt = primaryRole;
-    resultImageEl.style.display = 'block';
-  } else {
-    resultImageEl.style.display = 'none';
+function getAnsweredCount() {
+  return answers.filter(answer => answer !== null).length;
+}
+
+function getQuestionCrossWeights(question) {
+  return {
+    ...(ROLE_CROSS_WEIGHTS[question.role] || {}),
+    ...(question.effects || {})
+  };
+}
+
+function calculateRoleMetrics() {
+  const metrics = {};
+
+  Object.keys(ROLE_INFO).forEach(role => {
+    metrics[role] = {
+      score: 0,
+      rawScore: 0,
+      primaryScore: 0,
+      secondaryScore: 0,
+      intensity: 0,
+      anchorHits: 0,
+      answeredCount: 0,
+      questionCount: 0
+    };
+  });
+
+  for (let i = 0; i < shuffledQuestions.length; i++) {
+    const question = shuffledQuestions[i];
+    const answer = answers[i];
+    const roleMetric = metrics[question.role];
+
+    roleMetric.questionCount++;
+
+    if (answer === null) {
+      continue;
+    }
+
+    const normalizedScore = question.reverse ? 8 - answer : answer;
+    const scoreSignal = normalizedScore - 4;
+    const primaryImpact = scoreSignal * PRIMARY_ROLE_WEIGHT;
+
+    roleMetric.rawScore += normalizedScore;
+    roleMetric.primaryScore += primaryImpact;
+    roleMetric.score += primaryImpact;
+    roleMetric.intensity += Math.abs(primaryImpact);
+    roleMetric.answeredCount++;
+
+    if (normalizedScore >= 6) {
+      roleMetric.anchorHits++;
+    }
+
+    const crossWeights = getQuestionCrossWeights(question);
+    Object.entries(crossWeights).forEach(([targetRole, weight]) => {
+      if (!metrics[targetRole] || targetRole === question.role) {
+        return;
+      }
+
+      const secondaryImpact = scoreSignal * weight;
+      metrics[targetRole].secondaryScore += secondaryImpact;
+      metrics[targetRole].score += secondaryImpact;
+      metrics[targetRole].intensity += Math.abs(secondaryImpact);
+    });
   }
+
+  return metrics;
+}
+
+function sortRolesByMetrics(metrics) {
+  return Object.keys(metrics).sort((roleA, roleB) => {
+    const primaryDelta = metrics[roleB].primaryScore - metrics[roleA].primaryScore;
+    if (primaryDelta !== 0) {
+      return primaryDelta;
+    }
+
+    const anchorHitDelta = metrics[roleB].anchorHits - metrics[roleA].anchorHits;
+    if (anchorHitDelta !== 0) {
+      return anchorHitDelta;
+    }
+
+    const totalDelta = metrics[roleB].score - metrics[roleA].score;
+    if (totalDelta !== 0) {
+      return totalDelta;
+    }
+
+    const rawDelta = metrics[roleB].rawScore - metrics[roleA].rawScore;
+    if (rawDelta !== 0) {
+      return rawDelta;
+    }
+
+    const intensityDelta = metrics[roleB].intensity - metrics[roleA].intensity;
+    if (intensityDelta !== 0) {
+      return intensityDelta;
+    }
+
+    return roleA.localeCompare(roleB, 'zh-CN');
+  });
+}
+
+function getMatchPercentage(metric) {
+  const minimumScore = metric.questionCount;
+  const maximumScore = metric.questionCount * 7;
+
+  if (maximumScore === minimumScore) {
+    return 0;
+  }
+
+  const normalized = (metric.rawScore - minimumScore) / (maximumScore - minimumScore);
+  return Math.round(normalized * 100);
+}
+
+function normalizePreviewToken(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_\-()（）]+/g, '');
+}
+
+function resolvePreviewRole(previewValue) {
+  const token = normalizePreviewToken(previewValue);
+
+  if (!token) {
+    return null;
+  }
+
+  return Object.entries(ROLE_INFO).find(([role, info]) => {
+    return (
+      normalizePreviewToken(role) === token ||
+      normalizePreviewToken(info.englishName) === token
+    );
+  })?.[0] ?? null;
+}
+
+function getTiedTopRoles(sortedRoles, metrics) {
+  const primaryRole = sortedRoles[0];
+  const primaryMetric = metrics[primaryRole];
+
+  return sortedRoles.filter(role => {
+    return (
+      metrics[role].primaryScore === primaryMetric.primaryScore &&
+      metrics[role].anchorHits === primaryMetric.anchorHits &&
+      metrics[role].score === primaryMetric.score &&
+      metrics[role].rawScore === primaryMetric.rawScore &&
+      metrics[role].intensity === primaryMetric.intensity
+    );
+  });
+}
+
+function getPlaceholderPalette(role) {
+  const roleIndex = Object.keys(ROLE_INFO).indexOf(role);
+  return PLACEHOLDER_PALETTES[roleIndex % PLACEHOLDER_PALETTES.length];
+}
+
+function createPlaceholderImage(role, englishName) {
+  const [lightColor, midColor, darkColor] = getPlaceholderPalette(role);
+  const initials = englishName
+    .split(/[\s-]+/)
+    .map(part => part.charAt(0))
+    .join('')
+    .slice(0, 3)
+    .toUpperCase();
+
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+      <defs>
+        <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${lightColor}" />
+          <stop offset="100%" stop-color="${midColor}" />
+        </linearGradient>
+      </defs>
+      <rect width="360" height="360" rx="44" fill="url(#card)" />
+      <circle cx="180" cy="148" r="74" fill="rgba(255,255,255,0.62)" />
+      <circle cx="120" cy="96" r="20" fill="rgba(255,255,255,0.42)" />
+      <circle cx="248" cy="104" r="16" fill="rgba(255,255,255,0.35)" />
+      <rect x="92" y="218" width="176" height="78" rx="26" fill="rgba(255,255,255,0.74)" />
+      <text x="180" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="62" font-weight="800" fill="${darkColor}">${initials}</text>
+      <text x="180" y="252" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#173b27">${role}</text>
+      <text x="180" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#305746">${englishName}</text>
+    </svg>
+  `.trim();
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function getRoleImageSrc(role, roleInfo) {
+  return roleInfo.image || createPlaceholderImage(role, roleInfo.englishName);
+}
+
+function renderTraits(traits) {
+  resultTraitsEl.innerHTML = '';
+
+  traits.forEach(trait => {
+    const tag = document.createElement('span');
+    tag.classList.add('trait-pill');
+    tag.textContent = trait;
+    resultTraitsEl.appendChild(tag);
+  });
+}
+
+function renderResult(primaryRole, completionText) {
+  const primaryInfo = ROLE_INFO[primaryRole];
+
+  resultTitleEl.textContent = primaryRole;
+  resultNameEnEl.textContent = primaryInfo.englishName;
+  resultDetailTitleEl.textContent = `${primaryInfo.englishName}（${primaryRole}）`;
+  resultTaglineEl.textContent = primaryInfo.tagline;
+  resultDescriptionEl.textContent = primaryInfo.description;
+  resultMatchEl.textContent = RESULT_EASTER_EGG_TEXT;
+  resultCompletionEl.textContent = completionText;
+  resultImageEl.src = getRoleImageSrc(primaryRole, primaryInfo);
+  resultImageEl.alt = `${primaryRole} 角色图`;
+  renderTraits(primaryInfo.traits);
+  startScreen.classList.add('hidden');
   quizScreen.classList.add('hidden');
   resultScreen.classList.remove('hidden');
 }
+
+function showPreviewRole(role) {
+  const completionText = `预览模式 · 当前展示 ${role} 的结果页`;
+
+  renderResult(role, completionText);
+}
+
+function showResult() {
+  if (hasUnansweredQuestions()) {
+    const unansweredCount = answers.filter(answer => answer === null).length;
+    alert(`还有 ${unansweredCount} 道题没有完成，请先答完再看结果。`);
+    return;
+  }
+
+  const roleMetrics = calculateRoleMetrics();
+  const sortedRoles = sortRolesByMetrics(roleMetrics);
+  const primaryRole = sortedRoles[0];
+  const totalAnswered = getAnsweredCount();
+  const tiedTopRoles = getTiedTopRoles(sortedRoles, roleMetrics);
+  let completionText = `已完成 ${totalAnswered} / ${shuffledQuestions.length} 题`;
+
+  if (tiedTopRoles.length === 2) {
+    const alternativeRole = tiedTopRoles.find(role => role !== primaryRole);
+    completionText += ` · 与 ${alternativeRole} 同样接近`;
+  } else if (tiedTopRoles.length > 2) {
+    completionText += ` · 当前结果与 ${tiedTopRoles.length} 个类型并列接近`;
+  }
+
+  renderResult(primaryRole, completionText);
+}
+
+function initializePreviewMode() {
+  const params = new URLSearchParams(window.location.search);
+  const previewRole = resolvePreviewRole(params.get('preview'));
+
+  if (previewRole) {
+    showPreviewRole(previewRole);
+  }
+}
+
+initializePreviewMode();
