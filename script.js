@@ -1,4 +1,4 @@
-.// Questions and role mapping for the AITI personality test
+//// Questions and role mapping for the AITI personality test
 
 // Each question has:
 // - text: the statement presented to the user
