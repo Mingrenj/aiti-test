@@ -417,7 +417,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
-  padding: 0 16px 0 14px;
+  padding: 0 16px;
   border: 1px solid rgba(39, 86, 60, 0.12);
   border-radius: 999px;
   background: linear-gradient(180deg, rgba(248, 251, 248, 0.98) 0%, rgba(236, 243, 238, 0.95) 100%);
@@ -426,14 +426,6 @@ body::after {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-}
-
-.trait-pill::before {
-  content: '#';
-  margin-right: 10px;
-  color: rgba(31, 104, 63, 0.72);
-  font-size: 0.82rem;
-  font-weight: 900;
 }
 
 .details-card .btn-secondary {
