@@ -103,10 +103,22 @@ body::after {
   text-align: left;
 }
 
+.start-card {
+  display: grid;
+  justify-items: center;
+}
+
 .intro-text {
   margin: 0 0 24px;
   font-size: 1.2rem;
   line-height: 1.7;
+}
+
+.intro-credit {
+  margin: 24px 0 0;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
 }
 
 .btn-primary,
@@ -467,6 +479,10 @@ body::after {
 
   .tagline {
     font-size: 1.16rem;
+  }
+
+  .intro-credit {
+    font-size: 0.76rem;
   }
 
   .details-card {
