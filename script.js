@@ -109,7 +109,7 @@ const ROLE_INFO = {
     traits: ['续命优先', '节律自保', '懒感很诚实'],
     image: '猪妞.jpg'
   },
-  '嘉豪': {
+  '家豪': {
     englishName: 'rich family',
     tagline: '十年前的仇难道不报了吗',
     description: '你天生自带主角滤镜，表演欲和存在感都很强，习惯把生活过成舞台，把行动做成名场面。别人觉得你在装，你却觉得自己只是正常闪耀，因为你真心相信自己就是故事里的主角。你需要被看见、被记住，也需要这个世界承认你确实很有戏。',
@@ -558,6 +558,10 @@ function buildRoleImageCandidates(imagePath) {
   return ROLE_IMAGE_EXTENSIONS.map(extension => `${imagePath}${extension}`);
 }
 
+function toAssetUrl(assetPath) {
+  return new URL(assetPath, window.location.href).href;
+}
+
 function setResultImage(role, roleInfo) {
   const fallbackSrc = createPlaceholderImage(role, roleInfo.englishName);
   const candidates = buildRoleImageCandidates(roleInfo.image);
@@ -576,7 +580,7 @@ function setResultImage(role, roleInfo) {
     }
 
     resultImageEl.onerror = () => tryCandidate(index + 1);
-    resultImageEl.src = candidates[index];
+    resultImageEl.src = toAssetUrl(candidates[index]);
   };
 
   tryCandidate(0);
