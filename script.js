@@ -72,118 +72,119 @@ const QUESTIONS = [
   { text: '我花东西一向主打一个今朝有酒今朝醉，基本不做任何长期打算。', role: '南山校长', reverse: true }
 ];
 
+// Use exact relative image paths so each role can point to its own artwork file.
 const ROLE_INFO = {
   '月半猫': {
     englishName: 'Half Moon Cat',
     tagline: '你根本不懂得不懂得爱我',
     description: '你看起来松弛、圆钝、爱吃爱睡，像个对世界没什么攻击性的小肉球，但真正靠近后才会发现，你其实是情感浓度很高的人。你不太擅长把爱说得花里胡哨，却很会用陪伴、偏爱和笨拙真诚去认真喜欢一个人。外表软乎乎，内心却是个稳定又长情的深情怪。你属于慢热但很容易认真上头的类型，嘴上爱装随便，心里却把偏爱和保护欲存得很满。一旦认定了人或关系，细节里的照顾和黏度都会明显拉高。',
     traits: ['慢热上头', '嘴硬心软', '护短型偏爱'],
-    image: ''
+    image: '月半猫.jpg'
   },
   '奶龙': {
     englishName: 'NAI Loong',
     tagline: ' 我是奶龙，我才是奶龙，哈哈哈哈，我是奶虫',
     description: '你的人生逻辑不是先解释，而是先笑。越离谱的事你越想哈哈两声，越尴尬的场面你越能靠情绪把气氛带活。你不一定是真的没心没肺，只是特别擅长把沉重变轻、把紧张变松，让身边的人觉得天塌下来也可以先笑一会儿再说。',
     traits: ['气氛救火员', '笑点驱动', '临场反应快'],
-    image: ''
+    image: '奶龙.jpg'
   },
   '奶娃': {
     englishName: 'NAI Baby',
     tagline: '我的真的特别爱你，为什么你会落泪',
     description: '你天生带着一种“我就是最可爱的宝宝”的气场，讨喜、黏人、会撒娇，也很懂得把自己的可爱变成社交通行证。你并不是真的单纯，而是非常清楚自己的魅力在哪里，知道柔软和被偏爱本身就是一种力量。你的人设是宝宝，但你的可爱从来不是白给的。',
     traits: ['软萌亲近', '熟人加倍', '天生有保护欲'],
-    image: ''
+    image: '奶娃.jpg'
   },
   '安迪': {
     englishName: 'Hou la gangbadei Andy',
     tagline: '强者不留一兵一卒，悟者不伤一草一木',
     description: '你像是把战神和高僧装进了同一个身体里，平时通透清醒，关键时刻锋利果断，偶尔情绪一上头又会突然发癫。你不是矛盾，而是层次很多，知道什么时候该狠、什么时候该慈悲、什么时候该出手、什么时候该旁观。你危险，但也异常清醒。',
     traits: ['反差极强', '能打能讲', '临界感很重'],
-    image: ''
+    image: '安迪.jpg'
   },
   '猪妞': {
-    englishName: 'Zhu Niu',
+    englishName: 'Pig Niu',
     tagline: '仙女下凡',
     description: '你的人生态度很简单：困了就睡，饿了就吃，累了就先缓一缓。别人以为你在摆烂，你却觉得自己只是顺应生命本能，把压力化成休眠，把焦虑化成放空，把现实化成“先活着再说”。你不装高能，也不硬撑积极，但你会让人明白，慢一点也没关系',
     traits: ['续命优先', '节律自保', '懒感很诚实'],
-    image: ''
+    image: '猪妞.jpg'
   },
-  '家豪': {
+  '嘉豪': {
     englishName: 'rich family',
     tagline: '十年前的仇难道不报了吗',
     description: '你天生自带主角滤镜，表演欲和存在感都很强，习惯把生活过成舞台，把行动做成名场面。别人觉得你在装，你却觉得自己只是正常闪耀，因为你真心相信自己就是故事里的主角。你需要被看见、被记住，也需要这个世界承认你确实很有戏。',
     traits: ['主角滤镜', '镜头感强', '表现欲在线'],
-    image: ''
+    image: '嘉豪.jpg'
   },
   '刀盾': {
     englishName: 'what dog doing',
     tagline: 'what dog doing',
     description: '你不靠深刻取胜，而是靠节奏、记忆点和传播力取胜。你总能说出一些乍听没意义、细想没逻辑、但偏偏会在别人脑子里循环播放很久的话。你的人格像一句神秘口号，莫名其妙却极难忘记，最大的杀伤力就是让人不知不觉被你带进频道。',
     traits: ['复读感强', '记忆点高', '表达压过逻辑'],
-    image: ''
+    image: '刀盾.jpg'
   },
   '十年孤竹': {
     englishName: 'Ten years Bamboo',
     tagline: '十年孤竹的话语，是撑杆跳',
     description: '你表面像竹子一样挺拔、稳定、温和无害，甚至带着点前辈气质，但真正到了博弈场上，你却是那种很会藏招、很懂拿捏分寸的人。你不喜欢高调地赢，更偏爱不动声色地赢，用柔中带锋的方式把局面掌握在自己手里。你不是爱使坏，只是太会优雅地取胜。',
     traits: ['外淡内深', '擅长布局', '赢得很安静'],
-    image: ''
+    image: '十年孤竹.jpg'
   },
   '胡吒': {
     englishName: 'Hu Cha',
     tagline: '怎么一半哪吒，一般胡巴啊',
     description: '你看起来可爱、灵动、像个有点任性的小魔丸，但真正相处下来，别人很快就会发现你脑子活、反应快、心眼也不少。你很懂反差感的魅力，擅长在卖萌和腹黑之间来回切换，让人一边觉得你好可爱，一边又隐隐觉得你不好惹。越可爱，越不能低估你。',
     traits: ['甜里藏刀', '反差吸引', '悄悄掌控'],
-    image: ''
+    image: '胡吒.jpg'
   },
   '高雅人士': {
     englishName: 'Gentleman',
     tagline: '高雅人士 品鉴中，男人再富也要...',
     description: '你最大的本事，就是把离谱包装得很高级。你可以一边戴着墨镜、一边说着像模像样的文艺歪理，转头又做出很贱、很俗、很接地气的事，但偏偏让人越想越觉得合理。你不是单纯不正经，而是把不正经经营成了一种风格，嫌弃归嫌弃，却很难真的讨厌你。',
     traits: ['包装能力强', '气质先行', '歪理也顺耳'],
-    image: ''
+    image: '高雅人士.jpg'
   },
   '牢大': {
     englishName: 'Lao big',
     tagline: 'WHAT CAN I SAY',
     description: '你像那种永远活在逆风局里的人，但奇怪的是，局面越难你反而越稳。你不一定没有情绪，只是特别会把压力消化成支撑别人的力量，只要身边的人慌了，你就会本能地说一句“别怕，有我在”。你未必顺风顺水，但总能在风里站住，也让别人跟着站住。',
     traits: ['逆风不垮', '先稳别人', '扛事型人格'],
-    image: ''
+    image: '牢大.jpg'
   },
   '鹿先生': {
     englishName: 'Señor Deer',
     tagline: '到时间了',
     description: '你不喜欢拖拉，不喜欢空转，不喜欢把时间浪费在无止境的犹豫里。你讲守时、讲速度、讲产出，别人还在讨论的时候，你可能已经做完了一轮并开始改第二版。你相信很多问题不是难，而是慢，所以你的魅力从来不只是会想，而是能立刻推进、迅速闭环。',
     traits: ['执行力爆表', '先跑起来', '抗拖延强'],
-    image: ''
+    image: '鹿先生.jpg'
   },
   '帝哥': {
     englishName: 'GOD',
     tagline: '天道降临',
     description: '你看不惯的事就想管，遇到不合理的人和事总是忍不住插手，尤其受不了装腔作势、虚张声势和低级错误。你有判断、有实力，也有一点脾气，既会替人打抱不平，也会毫不留情地指出问题。你像个随时在线的民间纪委，正义感和压迫感同时拉满。。',
     traits: ['正义感高', '嘴比脑快', '拆台很准'],
-    image: ''
+    image: '帝哥.jpg'
   },
   '鳄鱼': {
     englishName: 'Hungry fish',
-    tagline: '你鳄鱼叔叔我几亿年前就这样了',
+    tagline: '你鳄鱼叔叔我几亿年前就这样了，削弱我就美美隐身',
     description: '你不是花样很多的人，你更相信熟练、重复、经验和长期积累的力量。别人觉得你保守，你却知道自己是在规矩里藏智慧、在稳定中保实力。你不迷信新奇，也不急着出风头，因为你明白真正能让人活到最后的，往往不是最惊艳的那套，而是最耐用的那套。',
     traits: ['守拙耐久', '偏爱老办法', '稳过花活'],
-    image: ''
+    image: '鳄鱼.jpg'
   },
   '日记猫': {
     englishName: 'Diary CAT WMR',
     tagline: '这是开发者形象',
     description: '你说话和行为都很 open，很会制造暧昧，也很容易让人觉得你风流、会撩、边界很松。但再往里走一点，就会发现你并没有表面那么放得开，很多外放和轻佻其实是在掩饰内心的压抑、拧巴和犹豫。你表面像个浪子，内心却像一团没解开的线。',
     traits: ['氛围感强', '开放外壳', '边界藏得深'],
-    image: ''
+    image: '日记猫.jpg'
   },
   '南山校长': {
     englishName: 'South mountains headmaster',
     tagline: '夏天到了，记得开空调',
     description: '你是天生的资源经营者，务实、精明、对钱、机会和筹码都异常敏感。别人花钱像消费，你花钱像投资；别人囤快乐，你囤实力。你不喜欢浪费，也不喜欢无效扩张，更习惯把力量集中到最有价值的地方。你的人生信条很明确：能攒下来的，最后都会变成底气。',
     traits: ['资源敏感', '长期盘算', '收束力强'],
-    image: ''
+    image: '南山校长.jpg'
   }
 };
 
@@ -205,6 +206,8 @@ const PLACEHOLDER_PALETTES = [
   ['#ffe4e7', '#ff9eb0', '#e55d7a'],
   ['#e8f4ff', '#8ec2ff', '#3478c2']
 ];
+
+const ROLE_IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg'];
 
 // Primary role questions always dominate; cross-role influence only refines the edges.
 const PRIMARY_ROLE_WEIGHT = 6;
@@ -543,8 +546,40 @@ function createPlaceholderImage(role, englishName) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-function getRoleImageSrc(role, roleInfo) {
-  return roleInfo.image || createPlaceholderImage(role, roleInfo.englishName);
+function buildRoleImageCandidates(imagePath) {
+  if (!imagePath) {
+    return [];
+  }
+
+  if (/\.[a-z0-9]+(?:[?#].*)?$/i.test(imagePath)) {
+    return [imagePath];
+  }
+
+  return ROLE_IMAGE_EXTENSIONS.map(extension => `${imagePath}${extension}`);
+}
+
+function setResultImage(role, roleInfo) {
+  const fallbackSrc = createPlaceholderImage(role, roleInfo.englishName);
+  const candidates = buildRoleImageCandidates(roleInfo.image);
+
+  if (!candidates.length) {
+    resultImageEl.onerror = null;
+    resultImageEl.src = fallbackSrc;
+    return;
+  }
+
+  const tryCandidate = index => {
+    if (index >= candidates.length) {
+      resultImageEl.onerror = null;
+      resultImageEl.src = fallbackSrc;
+      return;
+    }
+
+    resultImageEl.onerror = () => tryCandidate(index + 1);
+    resultImageEl.src = candidates[index];
+  };
+
+  tryCandidate(0);
 }
 
 function renderTraits(traits) {
@@ -569,7 +604,7 @@ function renderResult(primaryRole, completionText) {
   resultMatchEl.textContent = RESULT_EASTER_EGG.match;
   resultScoreEl.textContent = RESULT_EASTER_EGG.score;
   resultCompletionEl.textContent = completionText;
-  resultImageEl.src = getRoleImageSrc(primaryRole, primaryInfo);
+  setResultImage(primaryRole, primaryInfo);
   resultImageEl.alt = `${primaryRole} 角色图`;
   renderTraits(primaryInfo.traits);
   startScreen.classList.add('hidden');
