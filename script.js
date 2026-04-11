@@ -229,7 +229,10 @@ const ROLE_CROSS_WEIGHTS = {
   '南山校长': { '十年孤竹': 0.6, '鳄鱼': 0.4, '奶娃': -0.7, '月半猫': -0.5 }
 };
 
-const RESULT_EASTER_EGG_TEXT = '匹配度 91% · 倾向得分 78/91';
+const RESULT_EASTER_EGG = {
+  match: '匹配度 91%',
+  score: '倾向得分 78/91'
+};
 
 // Global state
 let shuffledQuestions = [];
@@ -255,6 +258,7 @@ const resultTaglineEl = document.getElementById('result-tagline');
 const resultDescriptionEl = document.getElementById('result-description');
 const resultTraitsEl = document.getElementById('result-traits');
 const resultMatchEl = document.getElementById('result-match');
+const resultScoreEl = document.getElementById('result-score');
 const resultCompletionEl = document.getElementById('result-completion');
 const resultImageEl = document.getElementById('result-image');
 
@@ -562,7 +566,8 @@ function renderResult(primaryRole, completionText) {
   resultDetailTitleEl.textContent = `${primaryInfo.englishName}（${primaryRole}）`;
   resultTaglineEl.textContent = primaryInfo.tagline;
   resultDescriptionEl.textContent = primaryInfo.description;
-  resultMatchEl.textContent = RESULT_EASTER_EGG_TEXT;
+  resultMatchEl.textContent = RESULT_EASTER_EGG.match;
+  resultScoreEl.textContent = RESULT_EASTER_EGG.score;
   resultCompletionEl.textContent = completionText;
   resultImageEl.src = getRoleImageSrc(primaryRole, primaryInfo);
   resultImageEl.alt = `${primaryRole} 角色图`;

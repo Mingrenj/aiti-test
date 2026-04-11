@@ -42,17 +42,24 @@
       </section>
 
       <section class="card result-card details-card">
-        <p class="section-label">你的主类型</p>
-        <h2 id="result-detail-title" class="result-detail-title"></h2>
-        <div class="result-meta">
-          <p id="result-match" class="match-pill"></p>
-          <p id="result-completion" class="completion-text"></p>
+        <div class="details-card-header">
+          <div class="details-heading">
+            <p class="section-label">你的主类型</p>
+            <h2 id="result-detail-title" class="result-detail-title"></h2>
+          </div>
+          <div class="result-meta">
+            <div class="result-badges">
+              <p id="result-match" class="meta-pill match-pill"></p>
+              <p id="result-score" class="meta-pill score-pill"></p>
+            </div>
+            <p id="result-completion" class="completion-text"></p>
+          </div>
         </div>
-        <div class="description-block">
+        <div class="detail-section description-block">
           <h3 class="detail-subtitle">角色简介</h3>
           <p id="result-description" class="result-description"></p>
         </div>
-        <div>
+        <div class="detail-section">
           <h3 class="detail-subtitle">关键词</h3>
           <div id="result-traits" class="traits"></div>
         </div>
