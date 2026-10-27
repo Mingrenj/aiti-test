@@ -104,3 +104,4 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid 
   html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}.oracle-ring,.calibration-sigil{transform:none!important}
 }
 @media print { .site-header,.site-footer,.result-actions,.footer-actions{display:none!important}.result-screen{display:block!important}.result-section{break-inside:avoid}.page-atmosphere{display:none} }
+.radar-fallback[hidden] { display:none !important; }

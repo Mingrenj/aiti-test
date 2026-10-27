@@ -26,3 +26,15 @@ test("入口资源使用相对路径，适配 GitHub Pages 子目录", async () 
   assert.doesNotMatch(html, /(?:src|href)="\/(?!\/)/, "不应使用站点根路径资源");
 });
 
+test("雷达绘制成功后隐藏兜底提示层", async () => {
+  const [html, styles, app] = await Promise.all([
+    readFile(new URL("index.html", root), "utf8"),
+    readFile(new URL("styles.css", root), "utf8"),
+    readFile(new URL("app.js", root), "utf8"),
+  ]);
+
+  assert.match(html, /id="radar-fallback"\s+hidden/);
+  assert.match(app, /\$\("radar-fallback"\)\.hidden\s*=\s*true/);
+  assert.match(styles, /\.radar-fallback\[hidden\]\s*\{[^}]*display\s*:\s*none\s*!important/i);
+});
+
