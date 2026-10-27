@@ -28,6 +28,7 @@ import {
 
 const CORE_COUNT = 28;
 const ENVOY_PATH = "./assets/envoys";
+const ENVOY_ASSET_VERSION = "3";
 const $ = (id) => document.getElementById(id);
 const questionById = new Map(QUESTION_BANK_V2.map((question) => [question.id, question]));
 const categoryLabels = { self: "自述题", scenario: "情境题", regulation: "调节题" };
@@ -37,6 +38,10 @@ let session = readSession();
 let currentResult = session?.phase === "complete" ? session.scores : null;
 let radarFrame = 0;
 let toastTimer = 0;
+
+function envoyAssetUrl(key) {
+  return `${ENVOY_PATH}/${key}.webp?v=${ENVOY_ASSET_VERSION}`;
+}
 
 function readStorage(key) {
   try {
@@ -332,7 +337,7 @@ function setEnvoy(family, dimension) {
     card.classList.add("is-fallback");
     image.removeAttribute("src");
   };
-  image.src = `${ENVOY_PATH}/${dimension.key}.webp`;
+  image.src = envoyAssetUrl(dimension.key);
   if (image.complete && image.naturalWidth) card.classList.add("is-loaded");
 }
 
@@ -406,10 +411,6 @@ function renderFamilyDimensions(family, order, container, result) {
     const card = fragment.querySelector(".dimension-card");
     card.dataset.dimension = key;
     card.dataset.family = family;
-    const image = fragment.querySelector(".dimension-art img");
-    image.src = `${ENVOY_PATH}/${key}.webp`;
-    image.onerror = () => image.remove();
-    fragment.querySelector(".dimension-sigil").textContent = meta.icon;
     fragment.querySelector(".dimension-family").textContent = family === "vice" ? "阴影拉力" : "美德资源";
     fragment.querySelector(".dimension-name").textContent = `${meta.name} · ${meta.softName}`;
     fragment.querySelector(".dimension-score").textContent = score;
@@ -537,7 +538,7 @@ function loadEnvoy(key) {
       resolve(image);
     };
     image.onerror = () => resolve(null);
-    image.src = `${ENVOY_PATH}/${key}.webp`;
+    image.src = envoyAssetUrl(key);
   });
 }
 

@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
     <title>七面心镜 · 七宗罪 × 七美德</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230a0a0d'/%3E%3Cpath d='M32 6 51 17v25L32 58 13 42V17Z' fill='none' stroke='%23dfb66b' stroke-width='2'/%3E%3Cpath d='M32 13v38M19 21l26 22M45 21 19 43' stroke='%2396dbe4' stroke-width='1' opacity='.8'/%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
@@ -220,10 +220,10 @@
     </dialog>
 
     <template id="tension-card-template"><article class="tension-card"><header><span class="tension-index"></span><mark class="tension-state"></mark></header><h3 class="tension-names"></h3><div class="tension-bar"><i class="vice-fill"></i><b></b><i class="virtue-fill"></i></div><dl><div><dt>阴影</dt><dd class="tension-vice-score"></dd></div><div><dt>激活 / 平衡</dt><dd class="tension-balance"></dd></div><div><dt>美德</dt><dd class="tension-virtue-score"></dd></div></dl><p class="tension-copy"></p></article></template>
-    <template id="dimension-card-template"><article class="dimension-card"><div class="dimension-art" aria-hidden="true"><img alt="" loading="lazy" decoding="async" /><span class="dimension-sigil"></span></div><div class="dimension-content"><header><div><span class="dimension-family"></span><h3 class="dimension-name"></h3></div><strong class="dimension-score"></strong></header><p class="dimension-description"></p><dl><div><dt>可用的力量</dt><dd class="dimension-gift"></dd></div><div><dt>失衡时</dt><dd class="dimension-risk"></dd></div></dl><p class="dimension-advice"></p></div></article></template>
+    <template id="dimension-card-template"><article class="dimension-card"><div class="dimension-content"><header><div><span class="dimension-family"></span><h3 class="dimension-name"></h3></div><strong class="dimension-score"></strong></header><p class="dimension-description"></p><dl><div><dt>可用的力量</dt><dd class="dimension-gift"></dd></div><div><dt>失衡时</dt><dd class="dimension-risk"></dd></div></dl><p class="dimension-advice"></p></div></article></template>
 
     <noscript><div class="noscript-banner">七面心镜需要 JavaScript 在你的浏览器中随机抽题、计分并保存进度。请启用 JavaScript 后再开始。</div></noscript>
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=3"></script>
   </body>
 </html>
