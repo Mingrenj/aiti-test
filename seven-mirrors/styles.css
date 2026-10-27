@@ -1477,7 +1477,7 @@ kbd {
   }
 
   .quiz-shell {
-    width: min(100% - 24px, 560px);
+    width: min(calc(100% - 24px), 560px);
     min-height: calc(100dvh - 73px);
     padding-block: 18px;
   }
