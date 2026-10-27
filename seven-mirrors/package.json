@@ -1,0 +1,13 @@
+{
+  "name": "seven-mirrors",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "七面心镜：一个注重隐私与自我反思的七宗罪倾向测试",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check assessment.js && node --check app.js && node --test"
+  }
+}
+
+
