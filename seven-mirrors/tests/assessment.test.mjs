@@ -1,63 +1,90 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-  DIMENSION_ORDER,
-  QUESTIONS,
-  buildResult,
-  calculateScores,
-  getLevel,
+  BANK_VERSION,
+  DIMENSIONS_V2,
+  DIMENSION_ORDER_V2,
+  PAIRS,
+  PAIR_ORDER,
+  QUESTION_BANK_V2,
 } from "../assessment.js";
+import {
+  COMBINATION_NARRATIVES,
+  buildJointActions,
+  getCombinationNarrative,
+  validateNarrativeCatalogue,
+} from "../v2-narrative.js";
 
-test("题库结构完整且每个维度恰好五题", () => {
-  assert.equal(QUESTIONS.length, 35);
-  assert.equal(new Set(QUESTIONS.map((question) => question.id)).size, 35);
-  for (const key of DIMENSION_ORDER) {
-    const items = QUESTIONS.filter((question) => question.dimension === key);
-    assert.equal(items.length, 5, `${key} 应有 5 题`);
-    assert.equal(items.filter((question) => question.reverse).length, 2, `${key} 应有 2 道反向题`);
+test("v2 题库覆盖 14 维、98 个稳定 ID", () => {
+  assert.equal(BANK_VERSION, 2);
+  assert.equal(DIMENSION_ORDER_V2.length, 14);
+  assert.equal(new Set(DIMENSION_ORDER_V2).size, 14);
+  assert.equal(Object.keys(DIMENSIONS_V2).length, 14);
+  assert.equal(QUESTION_BANK_V2.length, 98);
+  assert.equal(new Set(QUESTION_BANK_V2.map(({ id }) => id)).size, 98);
+});
+
+test("每维 7 题，并含正反向与三种题型", () => {
+  for (const dimension of DIMENSION_ORDER_V2) {
+    const questions = QUESTION_BANK_V2.filter((item) => item.dimension === dimension);
+    assert.equal(questions.length, 7, `${dimension} 应有 7 题`);
+    assert.equal(questions.filter(({ direction }) => direction === 1).length, 4);
+    assert.equal(questions.filter(({ direction }) => direction === -1).length, 3);
+    assert.deepEqual(
+      new Set(questions.map(({ category }) => category)),
+      new Set(["self", "scenario", "regulation"]),
+    );
   }
 });
 
-test("与倾向一致的极端答案计为 100", () => {
-  const answers = QUESTIONS.map((question) => (question.reverse ? 1 : 5));
-  const scores = calculateScores(answers);
-  for (const score of Object.values(scores)) assert.equal(score, 100);
+test("题目 schema、family 与配对关系保持一致", () => {
+  const allowedCategories = new Set(["self", "scenario", "regulation"]);
+  for (const question of QUESTION_BANK_V2) {
+    const dimension = DIMENSIONS_V2[question.dimension];
+    assert.ok(dimension, question.id);
+    assert.equal(question.family, dimension.family, question.id);
+    assert.equal(question.pairKey, dimension.pairKey, question.id);
+    assert.ok(allowedCategories.has(question.category), question.id);
+    assert.ok(question.direction === 1 || question.direction === -1, question.id);
+    assert.equal(question.version, 2, question.id);
+    assert.equal(question.active, true, question.id);
+    assert.ok(question.text.length >= 12, question.id);
+  }
 });
 
-test("与倾向相反的极端答案计为 0", () => {
-  const answers = QUESTIONS.map((question) => (question.reverse ? 5 : 1));
-  const scores = calculateScores(answers);
-  for (const score of Object.values(scores)) assert.equal(score, 0);
+test("七组宗罪与美德一一对应", () => {
+  assert.equal(PAIR_ORDER.length, 7);
+  for (const pairKey of PAIR_ORDER) {
+    const pair = PAIRS[pairKey];
+    assert.equal(DIMENSIONS_V2[pair.vice].family, "vice");
+    assert.equal(DIMENSIONS_V2[pair.virtue].family, "virtue");
+    assert.equal(DIMENSIONS_V2[pair.vice].pairKey, pairKey);
+    assert.equal(DIMENSIONS_V2[pair.virtue].pairKey, pairKey);
+  }
 });
 
-test("中性回答在所有维度都计为 50", () => {
-  const scores = calculateScores(Array(35).fill(3));
-  for (const score of Object.values(scores)) assert.equal(score, 50);
-});
-
-test("无效答案会被拒绝", () => {
-  assert.throws(() => calculateScores(Array(35).fill(0)), /缺少有效答案/);
-});
-
-test("等级边界与双核心规则稳定", () => {
-  assert.equal(getLevel(34).key, "low");
-  assert.equal(getLevel(35).key, "mid");
-  assert.equal(getLevel(64).key, "mid");
-  assert.equal(getLevel(65).key, "high");
-
-  const result = buildResult({
-    pride: 80,
-    greed: 72,
-    lust: 50,
-    envy: 45,
-    gluttony: 40,
-    wrath: 35,
-    sloth: 30,
+test("49 种双使者叙事完整且同轴规则正确", () => {
+  assert.deepEqual(validateNarrativeCatalogue(), {
+    combinations: 49,
+    uniqueIds: 49,
+    uniqueTitles: 49,
+    sameAxis: 7,
+    crossCore: 42,
   });
-  assert.equal(result.top.key, "pride");
-  assert.equal(result.second.key, "greed");
-  assert.equal(result.doubleCore, true);
-  assert.equal(result.lowest.key, "sloth");
+  assert.equal(COMBINATION_NARRATIVES.length, 49);
+  assert.equal(getCombinationNarrative("pride", "humility").modeLabel, "同轴映照");
+  assert.equal(getCombinationNarrative("pride", "diligence").modeLabel, "交叉双核");
 });
 
+test("联合建议固定输出三条且保持自我观察定位", () => {
+  const actions = buildJointActions({
+    scores: { pride: 75, humility: 68 },
+    pairs: { pride: { pairKey: "pride", state: "双高张力", balance: -7, activation: 71.5 } },
+    dominantVice: "pride",
+    dominantVirtue: "humility",
+  });
+  assert.equal(actions.length, 3);
+  assert.equal(new Set(actions.map(({ id }) => id)).size, 3);
+  assert.ok(actions.every(({ title, text }) => title && text.length > 20));
+});
 

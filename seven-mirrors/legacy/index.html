@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="七面心镜是一份 35 题的七宗罪倾向测试，用一张雷达图温和地观察七种人性冲动。无需登录，答案仅保存在你的浏览器。"
+    />
+    <meta name="theme-color" content="#111014" />
+    <meta property="og:title" content="七面心镜 · 七宗罪倾向测试" />
+    <meta property="og:description" content="看看七种人性冲动，在你身上留下了怎样的轮廓。" />
+    <meta property="og:type" content="website" />
+    <title>七面心镜 · 七宗罪倾向测试</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111014'/%3E%3Cpolygon points='32,8 49,16 53,35 41,51 23,51 11,35 15,16' fill='none' stroke='%23d5b56d' stroke-width='3'/%3E%3Ccircle cx='32' cy='31' r='4' fill='%23f2dc9c'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="七面心镜首页">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="20,3 33.3,9.4 36.6,23.8 27.4,35.3 12.6,35.3 3.4,23.8 6.7,9.4"></polygon>
+          <circle cx="20" cy="20" r="3"></circle>
+        </svg>
+        <span>七面心镜</span>
+      </a>
+      <button class="header-link" id="open-method" type="button">测试说明</button>
+    </header>
+
+    <main id="main-content">
+      <section class="screen intro-screen is-active" id="intro-screen" data-screen="intro">
+        <div class="intro-layout page-shell">
+          <div class="intro-copy reveal">
+            <p class="eyebrow"><span></span> A SEVEN-FACETED MIRROR</p>
+            <h1>照见人性的<br /><em>七种拉力</em></h1>
+            <p class="lede">
+              每个人都有光亮与阴影。用 35 道题，看看傲慢、贪婪、欲望、嫉妒、暴食、愤怒与懒惰，如何组成此刻的你。
+            </p>
+
+            <div class="intro-actions">
+              <button class="button button-primary" id="start-button" type="button">
+                <span>开始照见自己</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+              <button class="button button-ghost is-hidden" id="restart-home-button" type="button">重新开始</button>
+            </div>
+
+            <ul class="fact-list" aria-label="测试信息">
+              <li><strong>35</strong><span>道情境题</span></li>
+              <li><strong>≈ 4</strong><span>分钟完成</span></li>
+              <li><strong>0</strong><span>数据上传</span></li>
+            </ul>
+          </div>
+
+          <div class="mirror-stage reveal reveal-delay" aria-hidden="true">
+            <div class="orbit orbit-outer"></div>
+            <div class="orbit orbit-inner"></div>
+            <svg class="hero-mirror" viewBox="0 0 520 520">
+              <defs>
+                <radialGradient id="heroGlow" cx="50%" cy="45%" r="65%">
+                  <stop offset="0%" stop-color="#d5b56d" stop-opacity=".32"></stop>
+                  <stop offset="55%" stop-color="#7760a7" stop-opacity=".12"></stop>
+                  <stop offset="100%" stop-color="#111014" stop-opacity="0"></stop>
+                </radialGradient>
+                <linearGradient id="heroLine" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f2dc9c"></stop>
+                  <stop offset="50%" stop-color="#997cca"></stop>
+                  <stop offset="100%" stop-color="#69b982"></stop>
+                </linearGradient>
+              </defs>
+              <circle cx="260" cy="260" r="235" fill="url(#heroGlow)"></circle>
+              <g class="hero-grid">
+                <polygon points="260,56 419.5,132.8 458.9,305.4 348.5,443.8 171.5,443.8 61.1,305.4 100.5,132.8"></polygon>
+                <polygon points="260,101 384.3,160.8 415,295.4 329,403.1 191,403.1 105,295.4 135.7,160.8"></polygon>
+                <polygon points="260,146 349.2,189 371.1,285.3 309.5,362.5 210.5,362.5 148.9,285.3 170.8,189"></polygon>
+                <path d="M260 56V260M419.5 132.8L260 260M458.9 305.4L260 260M348.5 443.8L260 260M171.5 443.8L260 260M61.1 305.4L260 260M100.5 132.8L260 260"></path>
+              </g>
+              <polygon class="hero-shape" points="260,90 385,160 405,293 332,410 198,390 112,294 151,180"></polygon>
+              <g class="hero-points">
+                <circle cx="260" cy="90" r="6"></circle>
+                <circle cx="385" cy="160" r="6"></circle>
+                <circle cx="405" cy="293" r="6"></circle>
+                <circle cx="332" cy="410" r="6"></circle>
+                <circle cx="198" cy="390" r="6"></circle>
+                <circle cx="112" cy="294" r="6"></circle>
+                <circle cx="151" cy="180" r="6"></circle>
+              </g>
+            </svg>
+            <div class="mirror-caption">
+              <span>不是审判</span>
+              <i></i>
+              <span>是一张当下地图</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-note page-shell">
+          <p>认识阴影，不是为了责备自己，<br />而是为了更自由地选择。</p>
+          <span>请按近三个月的真实状态作答</span>
+        </div>
+      </section>
+
+      <section class="screen quiz-screen" id="quiz-screen" data-screen="quiz" hidden>
+        <div class="quiz-shell">
+          <div class="quiz-meta">
+            <button class="icon-button" id="quiz-exit" type="button" aria-label="退出测试，返回首页">×</button>
+            <div class="progress-wrap">
+              <div class="progress-label">
+                <span id="progress-text">01 / 35</span>
+                <span>跟随第一反应</span>
+              </div>
+              <div class="progress-track" role="progressbar" aria-label="测试进度" aria-valuemin="1" aria-valuemax="35" aria-valuenow="1">
+                <span id="progress-bar"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card" id="question-card">
+            <p class="question-kicker">多数时候的我</p>
+            <h2 id="question-text">题目载入中</h2>
+            <p class="question-hint" id="question-status" aria-live="polite">第 1 题，共 35 题</p>
+
+            <div class="answer-scale" id="answer-scale" role="radiogroup" aria-labelledby="question-text">
+              <button type="button" class="answer-option" data-value="1" role="radio" aria-checked="false">
+                <span class="answer-number">1</span><span class="answer-label">完全不符合</span>
+              </button>
+              <button type="button" class="answer-option" data-value="2" role="radio" aria-checked="false">
+                <span class="answer-number">2</span><span class="answer-label">比较不符合</span>
+              </button>
+              <button type="button" class="answer-option" data-value="3" role="radio" aria-checked="false">
+                <span class="answer-number">3</span><span class="answer-label">有时符合</span>
+              </button>
+              <button type="button" class="answer-option" data-value="4" role="radio" aria-checked="false">
+                <span class="answer-number">4</span><span class="answer-label">比较符合</span>
+              </button>
+              <button type="button" class="answer-option" data-value="5" role="radio" aria-checked="false">
+                <span class="answer-number">5</span><span class="answer-label">非常符合</span>
+              </button>
+            </div>
+
+            <div class="scale-ends" aria-hidden="true"><span>不符合</span><span>符合</span></div>
+          </div>
+
+          <div class="quiz-navigation">
+            <button class="text-button" id="previous-button" type="button">← 上一题</button>
+            <p><kbd>1</kbd>–<kbd>5</kbd> 也可以作答</p>
+            <button class="text-button" id="next-button" type="button" disabled>下一题 →</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen processing-screen" id="processing-screen" data-screen="processing" hidden>
+        <div class="processing-content">
+          <div class="assembling-mirror" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <p class="eyebrow">THE MIRROR IS FORMING</p>
+          <h2>正在整理你的七面轮廓</h2>
+          <p>让答案彼此映照，寻找最鲜明的两面。</p>
+        </div>
+      </section>
+
+      <section class="screen result-screen" id="result-screen" data-screen="result" hidden>
+        <div class="result-hero page-shell">
+          <div class="result-heading reveal">
+            <p class="eyebrow"><span></span> YOUR SEVEN-FACET PROFILE</p>
+            <p class="result-overline" id="result-overline">你的主倾向</p>
+            <h1 id="result-title">王冠的回声</h1>
+            <p class="result-summary" id="result-summary"></p>
+            <div class="result-actions">
+              <button class="button button-primary" id="download-button" type="button">保存结果图 <span aria-hidden="true">↓</span></button>
+              <button class="button button-secondary" id="share-button" type="button">分享结果</button>
+              <button class="button button-ghost" id="copy-button" type="button">复制文案</button>
+            </div>
+          </div>
+
+          <div class="radar-panel reveal reveal-delay">
+            <div class="radar-topline">
+              <span>倾向雷达</span>
+              <span>0—100</span>
+            </div>
+            <div id="radar-container" class="radar-container"></div>
+            <p class="radar-note">分数表示相对倾向，不代表善恶或人群排名。</p>
+          </div>
+        </div>
+
+        <div class="result-body page-shell">
+          <section class="result-section snapshot-section" aria-labelledby="snapshot-title">
+            <div class="section-heading">
+              <p class="section-index">01</p>
+              <div><p class="section-kicker">THE CLEARER FACETS</p><h2 id="snapshot-title">最鲜明的两面</h2></div>
+            </div>
+            <div class="facet-grid" id="top-facets"></div>
+          </section>
+
+          <section class="result-section reflection-section" aria-labelledby="reflection-title">
+            <div class="section-heading">
+              <p class="section-index">02</p>
+              <div><p class="section-kicker">A NOTE FOR NOW</p><h2 id="reflection-title">给此刻的你</h2></div>
+            </div>
+            <div class="reflection-layout">
+              <div class="shape-card">
+                <p class="quote-mark" aria-hidden="true">“</p>
+                <p id="shape-text"></p>
+                <span id="climate-text"></span>
+              </div>
+              <ol class="advice-list" id="advice-list"></ol>
+            </div>
+          </section>
+
+          <section class="result-section dimensions-section" aria-labelledby="dimensions-title">
+            <div class="section-heading">
+              <p class="section-index">03</p>
+              <div><p class="section-kicker">ALL SEVEN FACETS</p><h2 id="dimensions-title">完整七维</h2></div>
+            </div>
+            <div class="dimension-list" id="dimension-list"></div>
+          </section>
+
+          <section class="closing-card" aria-label="测试说明">
+            <div>
+              <p class="section-kicker">REMEMBER</p>
+              <h2>地图会改变，<br />你也一直在改变。</h2>
+            </div>
+            <div>
+              <p>睡眠、压力、关系与生活事件都会影响结果。隔一段时间重测，出现不同轮廓很正常。</p>
+              <button class="button button-secondary" id="retake-button" type="button">重新照一次</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer page-shell">
+      <p>七面心镜 <span>·</span> 一份自我反思练习</p>
+      <p>仅供娱乐与自我观察，不构成心理或医学诊断。</p>
+    </footer>
+
+    <dialog class="method-dialog" id="method-dialog">
+      <div class="dialog-inner">
+        <button class="icon-button dialog-close" id="close-method" type="button" aria-label="关闭说明">×</button>
+        <p class="section-kicker">BEFORE YOU BEGIN</p>
+        <h2>这面镜子如何工作？</h2>
+        <div class="method-grid">
+          <article><span>01</span><h3>按近况作答</h3><p>请依据近三个月“多数时候的你”，而不是理想中的自己。没有标准答案。</p></article>
+          <article><span>02</span><h3>七维独立计分</h3><p>每个维度由 5 道题组成，包含反向题。答案换算为 0—100 的倾向值。</p></article>
+          <article><span>03</span><h3>只存在本机</h3><p>进度与结果仅保存在当前浏览器的本地存储中，不会上传到服务器。</p></article>
+        </div>
+        <div class="disclaimer">
+          <strong>重要说明</strong>
+          <p>本测试不是心理诊断、人格定论或道德评判。高分不表示你是“坏人”，低分也不表示某种倾向不存在。若某种冲动或情绪持续影响生活、安全或关系，请向可信赖的人或专业人士寻求支持。</p>
+        </div>
+        <button class="button button-primary dialog-action" id="dialog-start" type="button">我明白了，开始测试</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <canvas id="share-canvas" width="1080" height="1350" hidden></canvas>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+

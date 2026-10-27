@@ -1,4 +1,6 @@
-export const DIMENSION_ORDER = [
+export const BANK_VERSION = 2;
+
+export const PAIR_ORDER = [
   "pride",
   "greed",
   "lust",
@@ -8,80 +10,100 @@ export const DIMENSION_ORDER = [
   "sloth",
 ];
 
-export const DIMENSIONS = {
+export const PAIRS = {
+  pride: { vice: "pride", virtue: "humility", name: "认可与自我定位" },
+  greed: { vice: "greed", virtue: "generosity", name: "资源与充足感" },
+  lust: { vice: "lust", virtue: "chastity", name: "吸引与自主边界" },
+  envy: { vice: "envy", virtue: "kindness", name: "比较与共情" },
+  gluttony: { vice: "gluttony", virtue: "temperance", name: "享受与适度" },
+  wrath: { vice: "wrath", virtue: "patience", name: "防御与容纳" },
+  sloth: { vice: "sloth", virtue: "diligence", name: "恢复与行动" },
+};
+
+export const VICE_ORDER = PAIR_ORDER.map((key) => PAIRS[key].vice);
+export const VIRTUE_ORDER = PAIR_ORDER.map((key) => PAIRS[key].virtue);
+export const DIMENSION_ORDER_V2 = [...VICE_ORDER, ...VIRTUE_ORDER];
+
+export const DIMENSIONS_V2 = {
   pride: {
+    family: "vice",
+    pairKey: "pride",
     name: "傲慢",
-    softName: "自我优越感",
+    softName: "认可需求",
     icon: "✦",
     color: "#e3c565",
-    archetype: "王冠的回声",
+    archetype: "冠冕使者",
     need: "被尊重、被认可与确认自身价值",
     short: "你有多需要证明自己正确、优秀或值得特殊认可。",
-    description:
-      "它常来自对尊重、能力感和价值感的需要。适量会表现为自信与标准感，过强时可能让倾听和承认错误变得困难。",
+    description: "傲慢常来自对尊重、能力感和价值感的需要。适量会表现为自信与标准感，过强时可能让倾听和承认错误变得困难。",
     gift: "清晰的自我标准、决断力与承担责任的意愿。",
-    risk: "容易把不同意见听成否定，在关系里陷入输赢。",
+    risk: "把不同意见听成否定，在关系里陷入输赢。",
     advice: {
-      low: "你较少执着于证明自己。别把谦逊变成自我压低；该表达专业意见时，仍可清楚发声。",
-      mid: "被挑战或忽视时，你可能进入防御。试试先准确复述对方观点，再说明自己的判断。",
-      high: "认可与正确感对你很重要。每天主动承认一个“不知道”，或点出一项他人的贡献，让自信不必依赖胜负。",
+      low: "你较少执着于证明自己。别把谦逊变成自我压低；该表达专业意见时仍可清楚发声。",
+      mid: "被挑战或忽视时，你可能进入防御。试试先复述对方观点，再说明自己的判断。",
+      high: "认可与正确感对你很重要。每天主动承认一个“不知道”，或点出一项他人的贡献。",
     },
   },
   greed: {
+    family: "vice",
+    pairKey: "greed",
     name: "贪婪",
-    softName: "占有欲",
+    softName: "稀缺感",
     icon: "◇",
     color: "#d08a4b",
-    archetype: "收藏家的手",
+    archetype: "金钥收藏者",
     need: "获得安全、资源与对生活的掌控感",
-    short: "你对金钱、资源、机会、安全感与控制权的累积倾向。",
-    description:
-      "它往往与安全感、稀缺感和控制感有关。适量能带来储备意识，过强时“更多”会逐渐取代“足够”。",
+    short: "你对金钱、资源、机会与控制权的累积倾向。",
+    description: "贪婪往往与安全感、稀缺感和控制感有关。适量能带来储备意识，过强时“更多”会逐渐取代“足够”。",
     gift: "储备意识、目标感，以及为未来负责的能力。",
     risk: "不断抬高“足够”的门槛，让拥有变成持续紧绷。",
     advice: {
-      low: "你对分享与得失较为放松。仍要保留合理边界：慷慨不等于忽略自己的需求。",
-      mid: "资源不足或竞争出现时，你的占有欲会增强。为金钱、时间或成就提前写下一条“足够线”。",
-      high: "积累可能在替你缓解不安全感。对非必要获取设置 24 小时等待期，并定期分享或清理闲置资源。",
+      low: "你对分享与得失较为放松。仍要保留合理边界，慷慨不等于忽略自己的需要。",
+      mid: "资源不足或竞争出现时，你的占有欲会增强。为金钱、时间或成就提前写下“足够线”。",
+      high: "积累可能在替你缓解不安全感。对非必要获取设置等待期，并定期整理闲置资源。",
     },
   },
   lust: {
+    family: "vice",
+    pairKey: "lust",
     name: "欲望",
     softName: "刺激寻求",
     icon: "❋",
     color: "#a77ada",
-    archetype: "火花追逐者",
-    need: "感受生命力、吸引力、新鲜感与亲密连接",
+    archetype: "焰纱引路人",
+    need: "感受生命力、吸引力、新鲜感与连接",
     short: "你被吸引、关注、新鲜感和即时冲动推动的程度。",
-    description:
-      "它体现了对吸引力、关注、新鲜感和即时满足的敏感，也包含生命力与好奇心；关键在于是否尊重边界和长期价值。",
+    description: "欲望体现了对吸引力、关注、新鲜感和即时满足的敏感，也包含生命力与好奇心；关键在于是否尊重边界和长期价值。",
     gift: "好奇心、感染力，以及对生活鲜活感的敏锐。",
     risk: "短期兴奋盖过承诺、边界或长期真正想要的东西。",
     advice: {
       low: "你较少被即时刺激牵引。可以主动为生活加入安全、真诚的新鲜体验。",
-      mid: "疲惫、孤独或兴奋时，你更容易跟随冲动。行动前问：“十分钟后和明天的我都会同意吗？”",
-      high: "强烈吸引或被关注感可能暂时盖过承诺。减少高风险触发，设置明确边界，把重要决定延迟到情绪回落后。",
+      mid: "疲惫、孤独或兴奋时，你更容易跟随冲动。行动前问：十分钟后和明天的我都会同意吗？",
+      high: "强烈吸引或被关注感可能盖过承诺。减少高风险触发，把重要决定延迟到情绪回落后。",
     },
   },
   envy: {
+    family: "vice",
+    pairKey: "envy",
     name: "嫉妒",
     softName: "比较心",
     icon: "◉",
     color: "#69b982",
-    archetype: "镜中的比较者",
-    need: "确认自己的位置、价值与未被满足的向往",
+    archetype: "翠镜观望者",
+    need: "确认自己的位置、价值与未满足的向往",
     short: "他人的成功、拥有或被关注，会在多大程度上影响你的自我评价。",
-    description:
-      "比较心通常在提醒你重视某种能力、关系或生活状态。适量比较能提供方向，过强则会侵蚀自我价值。",
-    gift: "对差距和愿望的敏感，能快速发现自己真正重视什么。",
+    description: "比较心通常在提醒你重视某种能力、关系或生活状态。适量比较能提供方向，过强则会侵蚀自我价值。",
+    gift: "对差距和愿望的敏感，能快速发现自己真正在乎什么。",
     risk: "把别人的高光误读成自己的失败，让价值感被外界牵动。",
     advice: {
       low: "你较少被他人的进展动摇。偶尔借助良性参照，也能帮助自己发现新的可能。",
-      mid: "特定对象或领域容易触发比较。把“我不如他”改写为“这件事显示我也在乎什么”。",
-      high: "外部评价可能频繁左右你的心情。减少触发性信息流，每天记录一项自己的进展与一项已有的支持。",
+      mid: "特定对象或领域容易触发比较。把“我不如他”改写为“这说明我也在乎什么”。",
+      high: "外部评价可能频繁左右你的心情。减少触发性信息流，每天记录一项自己的进展。",
     },
   },
   gluttony: {
+    family: "vice",
+    pairKey: "gluttony",
     name: "暴食",
     softName: "过度满足",
     icon: "◒",
@@ -89,17 +111,18 @@ export const DIMENSIONS = {
     archetype: "盛宴续杯者",
     need: "快速获得安慰、放松与可掌控的愉悦",
     short: "你通过食物、娱乐、购物或其他享受获得安慰并难以及时停止的倾向。",
-    description:
-      "这里不只指食物，也包括刷视频、购物、游戏及其他难以停止的享受。它常是快速舒缓压力的一种方式。",
+    description: "这里不只指食物，也包括刷视频、购物、游戏及其他难以停止的享受。它常是快速舒缓压力的一种方式。",
     gift: "感受快乐、品味体验，也懂得为紧绷的生活寻找出口。",
     risk: "即时安慰替代真正的休息与需求，满足之后反而更空。",
     advice: {
       low: "你通常能感知满足与停止。也别把节制变成过度剥夺，允许自己有意识地享受。",
-      mid: "压力或疲惫时，你可能更难停下。冲动出现时，先检查自己是否饿、怒、孤独或疲惫。",
-      high: "享受可能承担了较多情绪调节任务。调整环境以减少触发，并准备散步、交流或洗澡等替代安抚方式。",
+      mid: "压力或疲惫时，你可能更难停下。冲动出现时，先检查自己究竟需要安慰还是休息。",
+      high: "享受可能承担了较多情绪调节任务。减少环境触发，并准备散步、交流等替代安抚方式。",
     },
   },
   wrath: {
+    family: "vice",
+    pairKey: "wrath",
     name: "愤怒",
     softName: "怒火反应",
     icon: "ϟ",
@@ -107,129 +130,306 @@ export const DIMENSIONS = {
     archetype: "雷霆守门人",
     need: "保护边界、公平与不愿再次受伤的部分",
     short: "面对冒犯、阻碍与不公平时，你的情绪升温及反击倾向。",
-    description:
-      "愤怒常在保护边界、公平与尊严。它本身不是错误，但反应过快或持续过久，可能伤害关系与判断。",
+    description: "愤怒常在保护边界、公平与尊严。它本身不是错误，但反应过快或持续过久，可能伤害关系与判断。",
     gift: "边界感、正义感，以及在关键时刻挺身而出的力量。",
     risk: "防御系统启动过快，让小事升级，或让怨气长期占据注意。",
     advice: {
-      low: "你较少用怒气回应问题。注意不要一味压抑；平静而明确地表达边界同样重要。",
+      low: "你较少用怒气回应问题。注意不要一味压抑，平静而明确地表达边界同样重要。",
       mid: "明显的不公或冒犯会让你升温。识别身体信号，在回应前给自己一次短暂停顿。",
-      high: "你的防御系统启动得很快。冲突中先离开现场、降低音量并延迟重要决定；若担心失控，主动寻求支持。",
+      high: "你的防御系统启动得很快。冲突中先离开现场、降低音量并延迟重要决定。",
     },
   },
   sloth: {
+    family: "vice",
+    pairKey: "sloth",
     name: "懒惰",
     softName: "行动惰性",
     icon: "☾",
     color: "#7487bc",
-    archetype: "缓启动梦想家",
+    archetype: "月眠旅者",
     need: "躲开过载、失败感，或恢复被透支的精力",
     short: "你在启动、坚持或完成重要但不愉快任务时的阻力。",
-    description:
-      "行动困难不一定来自“懒”，也可能与疲劳、压力、任务模糊或害怕失败有关。这里关注的是启动与坚持阻力。",
+    description: "行动困难不一定来自“懒”，也可能与疲劳、压力、任务模糊或害怕失败有关。这里关注启动与坚持阻力。",
     gift: "知道何时放慢，也更容易看见不值得消耗的忙碌。",
     risk: "等待完美状态，让未完成的压力持续累积。",
     advice: {
       low: "你通常能稳定行动。记得把休息视为节奏的一部分，而不是必须赢得的奖励。",
       mid: "任务越模糊或不愉快，你越容易拖延。把第一步缩小到五分钟内能够完成。",
-      high: "回避与等待可能让压力累积。固定每天的最小行动时段；若长期精力低落并影响生活，也可关注睡眠、健康与心理负荷。",
+      high: "回避与等待可能让压力累积。固定每天的最小行动时段，并关注真实的精力负荷。",
+    },
+  },
+  humility: {
+    family: "virtue",
+    pairKey: "pride",
+    name: "谦逊",
+    softName: "开放与自知",
+    icon: "◎",
+    color: "#f2dc9c",
+    archetype: "俯星侍者",
+    need: "如实看见自己，也允许他人贡献与修正",
+    short: "你能否在保持价值感的同时，承认局限、错误与他人的长处。",
+    description: "谦逊不是自我贬低，而是不必靠压过别人来确认价值。它让自信与开放同时存在。",
+    gift: "学习能力、可信度，以及让关系保留呼吸空间的成熟感。",
+    risk: "过度使用时可能变成自我缩小、回避表达或把功劳全部让出。",
+    advice: {
+      low: "承认局限可能让你不安。试着从一句“这里我可能遗漏了什么？”开始。",
+      mid: "你多数时候保持开放，但在自尊受威胁时会防御。先分开事实反馈与人格评价。",
+      high: "你愿意修正和让出空间。也请练习坦然接受赞美，让谦逊不等于隐去自己。",
+    },
+  },
+  generosity: {
+    family: "virtue",
+    pairKey: "greed",
+    name: "慷慨",
+    softName: "分享与充足感",
+    icon: "✧",
+    color: "#f1b86f",
+    archetype: "托灯赠予者",
+    need: "相信资源可以流动，也能在分享中保留边界",
+    short: "你愿意分享时间、注意力、机会或资源的程度。",
+    description: "慷慨来自相对稳定的充足感。它不要求牺牲自己，而是愿意让资源在合理边界内流动。",
+    gift: "合作感、互惠意识，以及让他人得到支持与机会的能力。",
+    risk: "过度使用时可能讨好、透支，或用给予换取认可。",
+    advice: {
+      low: "分享可能触发损失感。可以从低成本、边界清晰的一次帮助开始。",
+      mid: "你愿意给予，但会在稀缺或竞争时收紧。提前划出一份可安心分享的额度。",
+      high: "给予是你的自然资源。也请确认自己是否真心愿意，并为时间与精力设置上限。",
+    },
+  },
+  chastity: {
+    family: "virtue",
+    pairKey: "lust",
+    name: "贞洁",
+    softName: "边界与自持",
+    icon: "◌",
+    color: "#c9a6ff",
+    archetype: "界线守护者",
+    need: "让吸引与好奇服从清楚的同意、承诺和长期选择",
+    short: "面对强烈吸引或刺激时，你保持自主边界与长期一致性的能力。",
+    description: "这里的贞洁不是纯洁度评判，而是边界、自主与承诺：感受欲望，同时仍由自己选择行动。",
+    gift: "清晰边界、可信赖感，以及不被即时刺激夺走方向的自主性。",
+    risk: "过度使用时可能压抑好奇、害怕亲密，或把正常欲望视作错误。",
+    advice: {
+      low: "强烈刺激容易推着你行动。为重要边界写下可执行规则，并在兴奋时延迟决定。",
+      mid: "你通常能守住边界，但疲惫或孤独时会动摇。提前识别这些高风险状态。",
+      high: "你很重视自主与承诺。也允许自己诚实感受吸引，不必把克制变成否认。",
+    },
+  },
+  kindness: {
+    family: "virtue",
+    pairKey: "envy",
+    name: "善意",
+    softName: "欣赏与共情",
+    icon: "❧",
+    color: "#9ad9ac",
+    archetype: "春枝共鸣者",
+    need: "在他人的光亮旁仍保有自己的价值，并愿意建立连接",
+    short: "你能否欣赏他人的成功、理解处境，并以支持代替敌意。",
+    description: "善意不是永远温柔，而是在比较被触发时，仍愿意看见对方是完整的人，也看见自己的需要。",
+    gift: "共情、合作和真诚庆祝他人的能力。",
+    risk: "过度使用时可能回避竞争、压下真实不满或习惯性讨好。",
+    advice: {
+      low: "他人的高光可能让你感到受威胁。先命名羡慕背后的愿望，再决定自己的下一步。",
+      mid: "你能表达善意，但在重要领域仍会比较。把赞赏和自我目标同时写下来。",
+      high: "你擅长支持和欣赏他人。也请允许自己竞争、争取和表达不舒服。",
+    },
+  },
+  temperance: {
+    family: "virtue",
+    pairKey: "gluttony",
+    name: "节制",
+    softName: "适度与觉察",
+    icon: "◐",
+    color: "#f1a8bf",
+    archetype: "衡杯调律者",
+    need: "在享受与停止之间听见真实需要",
+    short: "你有意识地享受，并在满足后停止的能力。",
+    description: "节制不是禁欲，而是能觉察需要、选择份量，让享受服务于生活而不是接管生活。",
+    gift: "稳定、自我照料，以及让快乐保持余韵而不过度的能力。",
+    risk: "过度使用时可能变成严格控制、害怕放松或以克制证明价值。",
+    advice: {
+      low: "即时满足容易超过真实需要。先为常见触发准备一个替代动作和清楚的停止点。",
+      mid: "平时你能保持适度，但在压力大时更难停止。先照顾疲惫，再处理冲动。",
+      high: "你擅长觉察与停止。也允许自己偶尔自在享受，不必让每次快乐都接受考核。",
+    },
+  },
+  patience: {
+    family: "virtue",
+    pairKey: "wrath",
+    name: "耐心",
+    softName: "情绪容纳",
+    icon: "≈",
+    color: "#ff9b8f",
+    archetype: "静潮守望者",
+    need: "为情绪、差异和变化保留反应之前的空间",
+    short: "你能否承受延迟、摩擦和不确定，而不立刻升级冲突。",
+    description: "耐心不是忍受伤害，而是在维护边界前先给判断留出空间，让回应比冲动更有选择。",
+    gift: "情绪稳定、长期视角，以及在冲突中保持判断力。",
+    risk: "过度使用时可能拖延必要对话、容忍越界或把压抑误当平静。",
+    advice: {
+      low: "等待或摩擦会迅速推高情绪。先练习一次呼吸、离开现场或延迟发送。",
+      mid: "你能处理一般延迟，但在被冒犯时更难等待。预先准备一句暂停冲突的话。",
+      high: "你能容纳情绪与过程。也要确认耐心没有替代明确拒绝和及时行动。",
+    },
+  },
+  diligence: {
+    family: "virtue",
+    pairKey: "sloth",
+    name: "勤勉",
+    softName: "稳定行动力",
+    icon: "↗",
+    color: "#9fb0e1",
+    archetype: "晨钟织路者",
+    need: "把价值与计划转化为可持续的小步行动",
+    short: "你在动力波动时仍能启动、推进和收尾的能力。",
+    description: "勤勉不是持续忙碌，而是用合适节奏把重要事情推进，并让休息成为节奏的一部分。",
+    gift: "可靠、持续和把愿景落地的能力。",
+    risk: "过度使用时可能把价值绑定产出、难以休息或忽略身体负荷。",
+    advice: {
+      low: "启动和坚持可能消耗很大。把行动缩小到五分钟，并先处理任务的不清晰。",
+      mid: "有结构时你较稳定，模糊或疲惫时会掉速。固定一个不依赖心情的最小动作。",
+      high: "稳定行动是你的资源。也请为休息安排位置，不必用持续产出来证明自己。",
     },
   },
 };
 
-export const QUESTIONS = [
-  { id: 1, dimension: "pride", reverse: false, text: "当别人质疑我的判断时，我常会立刻为自己辩护。" },
-  { id: 2, dimension: "greed", reverse: false, text: "即使已经拥有足够的资源，我仍常觉得还需要更多。" },
-  { id: 3, dimension: "lust", reverse: false, text: "新鲜、迷人或令人兴奋的人和事，很容易吸引我的全部注意。" },
-  { id: 4, dimension: "envy", reverse: false, text: "看到同龄人取得成绩时，我会不自觉地重新衡量自己的价值。" },
-  { id: 5, dimension: "gluttony", reverse: false, text: "一旦开始做令人愉快的事，我往往很难在适当的时候停下。" },
-  { id: 6, dimension: "wrath", reverse: false, text: "被冒犯或误解时，我的情绪通常会迅速变得强烈。" },
-  { id: 7, dimension: "sloth", reverse: false, text: "即使知道某件事很重要，我也常拖到压力迫近才开始。" },
-  { id: 8, dimension: "pride", reverse: true, text: "发现自己错了时，我愿意坦然承认并公开修正。" },
-  { id: 9, dimension: "greed", reverse: true, text: "当别人确实需要时，我通常愿意分享自己的时间或资源。" },
-  { id: 10, dimension: "lust", reverse: true, text: "即使受到强烈诱惑，我也能暂停一下并考虑后果。" },
-  { id: 11, dimension: "envy", reverse: true, text: "我能真心为别人的成功高兴，而不因此贬低自己。" },
-  { id: 12, dimension: "gluttony", reverse: true, text: "享受一件事时，我通常能在已经满足的时候停下来。" },
-  { id: 13, dimension: "wrath", reverse: true, text: "生气时，我通常能先让自己冷静，再决定如何回应。" },
-  { id: 14, dimension: "sloth", reverse: true, text: "即使没有动力，我也能先完成一个很小的起步动作。" },
-  { id: 15, dimension: "pride", reverse: false, text: "如果自己的贡献没有得到认可，我会明显感到不舒服。" },
-  { id: 16, dimension: "greed", reverse: false, text: "想到可能失去已经拥有的优势，我会格外焦虑或防备。" },
-  { id: 17, dimension: "lust", reverse: false, text: "短期的兴奋感有时会压过我原本的承诺或长期计划。" },
-  { id: 18, dimension: "envy", reverse: false, text: "别人得到更多关注或机会时，我有时会觉得不太公平。" },
-  { id: 19, dimension: "gluttony", reverse: false, text: "压力大时，我容易靠吃东西、刷内容、购物或娱乐来过度安慰自己。" },
-  { id: 20, dimension: "wrath", reverse: false, text: "受到伤害后，我会反复回想，并期待对方付出代价。" },
-  { id: 21, dimension: "sloth", reverse: false, text: "我常有不少计划，却一直等待所谓的最佳状态。" },
-  { id: 22, dimension: "pride", reverse: false, text: "在争论中，我有时更在意证明自己正确，而不是理解对方。" },
-  { id: 23, dimension: "greed", reverse: false, text: "拥有更多金钱、资源或控制权，会让我觉得自己更安全。" },
-  { id: 24, dimension: "lust", reverse: false, text: "被欣赏或被关注会让我很满足，并想继续追求这种感觉。" },
-  { id: 25, dimension: "envy", reverse: false, text: "我很容易注意到别人拥有而自己缺少的东西。" },
-  { id: 26, dimension: "gluttony", reverse: false, text: "我有时会以“奖励自己”为理由，获得远超实际需要的享受。" },
-  { id: 27, dimension: "wrath", reverse: false, text: "小小的阻碍或失误，有时也会让我产生过强的烦躁。" },
-  { id: 28, dimension: "sloth", reverse: false, text: "面对枯燥或困难的工作，我容易先逃避，直到不能再拖。" },
-  { id: 29, dimension: "pride", reverse: true, text: "我能接受别人比我更擅长某件事，而不需要贬低对方。" },
-  { id: 30, dimension: "greed", reverse: true, text: "达到原本设定的“足够”后，我通常能停止继续累积。" },
-  { id: 31, dimension: "lust", reverse: true, text: "即使欲望很强烈，我仍能守住自己与他人的边界。" },
-  { id: 32, dimension: "envy", reverse: true, text: "我能把别人的成功当作信息或启发，而不是对自我价值的判决。" },
-  { id: 33, dimension: "gluttony", reverse: true, text: "我通常能分辨真实需要与情绪性渴望。" },
-  { id: 34, dimension: "wrath", reverse: true, text: "事情过去后，我通常能逐渐放下怨气，而不是不断重演它。" },
-  { id: 35, dimension: "sloth", reverse: true, text: "我有相对稳定的节奏，能够把开始的事情推进到完成。" },
+const q = (id, family, dimension, pairKey, category, direction, text) => ({
+  id,
+  family,
+  dimension,
+  pairKey,
+  category,
+  direction,
+  text,
+  version: BANK_VERSION,
+  active: true,
+});
+
+export const QUESTION_BANK_V2 = [
+  // 傲慢 · 认可需求
+  q("pride-self-01", "vice", "pride", "pride", "self", 1, "当别人质疑我的判断时，我常会立刻为自己辩护。"),
+  q("pride-self-02", "vice", "pride", "pride", "self", 1, "如果自己的贡献没有得到认可，我会明显感到不舒服。"),
+  q("pride-self-03", "vice", "pride", "pride", "self", -1, "我能接受别人比我更擅长某件事，而不需要贬低对方。"),
+  q("pride-regulation-01", "vice", "pride", "pride", "regulation", 1, "在争论中，我有时更在意证明自己正确，而不是理解对方。"),
+  q("pride-regulation-02", "vice", "pride", "pride", "regulation", -1, "不确定时，我愿意直接说“我还不知道”。"),
+  q("pride-scenario-01", "vice", "pride", "pride", "scenario", 1, "如果有人当众指出我的错误，我容易把它体验成一种冒犯。"),
+  q("pride-scenario-02", "vice", "pride", "pride", "scenario", -1, "团队获得好结果时，我愿意主动说出他人的关键贡献。"),
+
+  // 贪婪 · 稀缺感
+  q("greed-self-01", "vice", "greed", "greed", "self", 1, "即使已经拥有足够的资源，我仍常觉得还需要更多。"),
+  q("greed-self-02", "vice", "greed", "greed", "self", 1, "想到可能失去已有的优势，我会格外焦虑或防备。"),
+  q("greed-self-03", "vice", "greed", "greed", "self", -1, "达到原本设定的“足够”后，我通常能停止继续累积。"),
+  q("greed-regulation-01", "vice", "greed", "greed", "regulation", 1, "拥有更多金钱、资源或控制权，会让我觉得自己更安全。"),
+  q("greed-regulation-02", "vice", "greed", "greed", "regulation", -1, "在不伤害自身需要的前提下，我愿意分享时间或资源。"),
+  q("greed-scenario-01", "vice", "greed", "greed", "scenario", 1, "机会有限时，我会倾向于先把更多份额留给自己。"),
+  q("greed-scenario-02", "vice", "greed", "greed", "scenario", -1, "共同完成的成果带来机会时，我愿意按贡献公平分配。"),
+
+  // 欲望 · 刺激寻求
+  q("lust-self-01", "vice", "lust", "lust", "self", 1, "新鲜、迷人或令人兴奋的人和事，很容易吸引我的全部注意。"),
+  q("lust-self-02", "vice", "lust", "lust", "self", 1, "短期的兴奋感有时会压过我原本的承诺或长期计划。"),
+  q("lust-self-03", "vice", "lust", "lust", "self", -1, "即使受到强烈诱惑，我也能暂停一下并考虑后果。"),
+  q("lust-regulation-01", "vice", "lust", "lust", "regulation", 1, "感到无聊或孤独时，我会主动寻找更强烈的刺激来改变感受。"),
+  q("lust-regulation-02", "vice", "lust", "lust", "regulation", -1, "即使很想靠近某个人或机会，我仍能尊重自己与他人的边界。"),
+  q("lust-scenario-01", "vice", "lust", "lust", "scenario", 1, "遇到极具吸引力的机会时，我可能先行动，再思考风险。"),
+  q("lust-scenario-02", "vice", "lust", "lust", "scenario", -1, "气氛令人兴奋时，我仍会确认同意、承诺与长期影响。"),
+
+  // 嫉妒 · 比较心
+  q("envy-self-01", "vice", "envy", "envy", "self", 1, "看到同龄人取得成绩时，我会不自觉地重新衡量自己的价值。"),
+  q("envy-self-02", "vice", "envy", "envy", "self", 1, "别人得到更多关注或机会时，我有时会觉得不太公平。"),
+  q("envy-self-03", "vice", "envy", "envy", "self", -1, "我能真心为别人的成功高兴，而不因此贬低自己。"),
+  q("envy-regulation-01", "vice", "envy", "envy", "regulation", 1, "我会反复查看他人的进展，确认自己有没有落后。"),
+  q("envy-regulation-02", "vice", "envy", "envy", "regulation", -1, "比较心出现时，我能把它转化为对自身目标的提示。"),
+  q("envy-scenario-01", "vice", "envy", "envy", "scenario", 1, "熟悉的人受到表扬时，我的第一反应有时是寻找其中不公平的地方。"),
+  q("envy-scenario-02", "vice", "envy", "envy", "scenario", -1, "看到别人拥有我想要的生活时，我能把它当作启发而非判决。"),
+
+  // 暴食 · 过度满足
+  q("gluttony-self-01", "vice", "gluttony", "gluttony", "self", 1, "一旦开始做令人愉快的事，我往往很难在适当的时候停下。"),
+  q("gluttony-self-02", "vice", "gluttony", "gluttony", "self", 1, "压力大时，我容易靠吃东西、刷内容、购物或娱乐来过度安慰自己。"),
+  q("gluttony-self-03", "vice", "gluttony", "gluttony", "self", -1, "享受一件事时，我通常能在已经满足的时候停下来。"),
+  q("gluttony-regulation-01", "vice", "gluttony", "gluttony", "regulation", 1, "我有时会以“奖励自己”为理由，获得远超实际需要的享受。"),
+  q("gluttony-regulation-02", "vice", "gluttony", "gluttony", "regulation", -1, "我通常能分辨真实需要与情绪性渴望。"),
+  q("gluttony-scenario-01", "vice", "gluttony", "gluttony", "scenario", 1, "疲惫的一天结束后，我容易让娱乐或消费一直持续到影响休息。"),
+  q("gluttony-scenario-02", "vice", "gluttony", "gluttony", "scenario", -1, "面对喜欢的食物或娱乐时，我能有意识地享受并按计划结束。"),
+
+  // 愤怒 · 怒火反应
+  q("wrath-self-01", "vice", "wrath", "wrath", "self", 1, "被冒犯或误解时，我的情绪通常会迅速变得强烈。"),
+  q("wrath-self-02", "vice", "wrath", "wrath", "self", 1, "受到伤害后，我会反复回想，并期待对方付出代价。"),
+  q("wrath-self-03", "vice", "wrath", "wrath", "self", -1, "生气时，我通常能先让自己冷静，再决定如何回应。"),
+  q("wrath-regulation-01", "vice", "wrath", "wrath", "regulation", 1, "小小的阻碍或失误，有时也会让我产生过强的烦躁。"),
+  q("wrath-regulation-02", "vice", "wrath", "wrath", "regulation", -1, "事情过去后，我通常能逐渐放下怨气，而不是不断重演它。"),
+  q("wrath-scenario-01", "vice", "wrath", "wrath", "scenario", 1, "收到让我不舒服的消息时，我容易立刻用强硬语气回复。"),
+  q("wrath-scenario-02", "vice", "wrath", "wrath", "scenario", -1, "冲突升温时，我能先暂停，再选择真正想表达的内容。"),
+
+  // 懒惰 · 行动惰性
+  q("sloth-self-01", "vice", "sloth", "sloth", "self", 1, "即使知道某件事很重要，我也常拖到压力迫近才开始。"),
+  q("sloth-self-02", "vice", "sloth", "sloth", "self", 1, "我常有不少计划，却一直等待所谓的最佳状态。"),
+  q("sloth-self-03", "vice", "sloth", "sloth", "self", -1, "即使没有动力，我也能先完成一个很小的起步动作。"),
+  q("sloth-regulation-01", "vice", "sloth", "sloth", "regulation", 1, "面对枯燥或困难的工作，我容易先逃避，直到不能再拖。"),
+  q("sloth-regulation-02", "vice", "sloth", "sloth", "regulation", -1, "我有相对稳定的节奏，能够把开始的事情推进到完成。"),
+  q("sloth-scenario-01", "vice", "sloth", "sloth", "scenario", 1, "拿到一个步骤不清楚的任务时，我容易先转去做别的事。"),
+  q("sloth-scenario-02", "vice", "sloth", "sloth", "scenario", -1, "任务让人畏难时，我通常能先安排一个五分钟内可完成的步骤。"),
+
+  // 谦逊 · 开放与自知
+  q("humility-self-01", "virtue", "humility", "pride", "self", 1, "发现自己错了时，我愿意坦然承认并公开修正。"),
+  q("humility-self-02", "virtue", "humility", "pride", "self", 1, "我能欣赏他人的能力，而不觉得这削弱了自己的价值。"),
+  q("humility-self-03", "virtue", "humility", "pride", "self", -1, "承认“不知道”会让我觉得自己显得没有价值。"),
+  q("humility-regulation-01", "virtue", "humility", "pride", "regulation", 1, "做重要决定前，我愿意主动邀请可信赖的人指出盲点。"),
+  q("humility-regulation-02", "virtue", "humility", "pride", "regulation", -1, "为了维护形象，我有时会淡化对自己不利的事实。"),
+  q("humility-scenario-01", "virtue", "humility", "pride", "scenario", 1, "遇到比我更擅长的人时，我愿意请教其方法。"),
+  q("humility-scenario-02", "virtue", "humility", "pride", "scenario", -1, "共同完成的成果受到表扬时，我容易把主要功劳留给自己。"),
+
+  // 慷慨 · 分享与充足感
+  q("generosity-self-01", "virtue", "generosity", "greed", "self", 1, "在能力范围内，我愿意分享时间、注意力或资源。"),
+  q("generosity-self-02", "virtue", "generosity", "greed", "self", 1, "看见自己的支持帮助别人前进，会让我感到满足。"),
+  q("generosity-self-03", "virtue", "generosity", "greed", "self", -1, "即使资源充足，给予别人仍常让我感到吃亏。"),
+  q("generosity-regulation-01", "virtue", "generosity", "greed", "regulation", 1, "我会为帮助他人预留一部分可承受的时间或资源。"),
+  q("generosity-regulation-02", "virtue", "generosity", "greed", "regulation", -1, "我倾向于把暂时用不到的资源也牢牢留住，以防万一。"),
+  q("generosity-scenario-01", "virtue", "generosity", "greed", "scenario", 1, "当团队只有有限机会时，我愿意依据需要和贡献公平分配。"),
+  q("generosity-scenario-02", "virtue", "generosity", "greed", "scenario", -1, "别人向我请教经验时，我常担心分享会削弱自己的优势。"),
+
+  // 贞洁 · 边界与自持
+  q("chastity-self-01", "virtue", "chastity", "lust", "self", 1, "即使吸引很强烈，我仍能守住自己与他人的边界。"),
+  q("chastity-self-02", "virtue", "chastity", "lust", "self", 1, "我的选择通常与自己做出的承诺和长期价值一致。"),
+  q("chastity-self-03", "virtue", "chastity", "lust", "self", -1, "被关注或欣赏时，我容易放松原本清楚的界限。"),
+  q("chastity-regulation-01", "virtue", "chastity", "lust", "regulation", 1, "重要决定受到强烈情绪影响时，我会等自己平静后再确认。"),
+  q("chastity-regulation-02", "virtue", "chastity", "lust", "regulation", -1, "我有时会用不断追逐新鲜感来回避真实的不舒服。"),
+  q("chastity-scenario-01", "virtue", "chastity", "lust", "scenario", 1, "关系或气氛变得暧昧时，我会确认双方意愿与既有承诺。"),
+  q("chastity-scenario-02", "virtue", "chastity", "lust", "scenario", -1, "边界不够清楚时，我可能用“大家都没说不”来说服自己继续。"),
+
+  // 善意 · 欣赏与共情
+  q("kindness-self-01", "virtue", "kindness", "envy", "self", 1, "我能真诚庆祝别人的进步，同时保留自己的目标。"),
+  q("kindness-self-02", "virtue", "kindness", "envy", "self", 1, "面对他人的失误，我通常愿意先理解处境再下判断。"),
+  q("kindness-self-03", "virtue", "kindness", "envy", "self", -1, "他人的成功常让我觉得自己的位置受到了威胁。"),
+  q("kindness-regulation-01", "virtue", "kindness", "envy", "regulation", 1, "比较心出现时，我会把注意力转向可以学习或支持的部分。"),
+  q("kindness-regulation-02", "virtue", "kindness", "envy", "regulation", -1, "为了让自己好受些，我有时会专注于优秀者的缺点。"),
+  q("kindness-scenario-01", "virtue", "kindness", "envy", "scenario", 1, "新成员受到肯定时，我愿意主动欢迎并说出其做得好的地方。"),
+  q("kindness-scenario-02", "virtue", "kindness", "envy", "scenario", -1, "与我竞争的人取得成绩时，我往往不愿表达认可。"),
+
+  // 节制 · 适度与觉察
+  q("temperance-self-01", "virtue", "temperance", "gluttony", "self", 1, "我通常能察觉自己已经满足，并在适当的时候停止。"),
+  q("temperance-self-02", "virtue", "temperance", "gluttony", "self", 1, "我能享受食物、娱乐或消费，而不需要一直追加。"),
+  q("temperance-self-03", "virtue", "temperance", "gluttony", "self", -1, "开始一件舒服的事后，我经常远远超过原本需要的程度。"),
+  q("temperance-regulation-01", "virtue", "temperance", "gluttony", "regulation", 1, "冲动出现时，我会先辨认自己真正需要的是享受、安慰还是休息。"),
+  q("temperance-regulation-02", "virtue", "temperance", "gluttony", "regulation", -1, "我容易在严格克制和完全放纵之间来回摆动。"),
+  q("temperance-scenario-01", "virtue", "temperance", "gluttony", "scenario", 1, "打开喜欢的娱乐前，我通常会先决定一个现实的结束时间。"),
+  q("temperance-scenario-02", "virtue", "temperance", "gluttony", "scenario", -1, "压力大时，即使已经不再享受，我仍可能继续吃、刷或买。"),
+
+  // 耐心 · 情绪容纳
+  q("patience-self-01", "virtue", "patience", "wrath", "self", 1, "情绪升高时，我通常能留出一点时间再回应。"),
+  q("patience-self-02", "virtue", "patience", "wrath", "self", 1, "面对别人学习较慢或表达不清时，我愿意给对方时间。"),
+  q("patience-self-03", "virtue", "patience", "wrath", "self", -1, "计划被延迟时，我容易把它理解成别人不尊重我。"),
+  q("patience-regulation-01", "virtue", "patience", "wrath", "regulation", 1, "冲突中，我能先说出自己的感受和需要，而不是立刻攻击。"),
+  q("patience-regulation-02", "virtue", "patience", "wrath", "regulation", -1, "出现矛盾时，我常坚持必须立刻得到答案或解决。"),
+  q("patience-scenario-01", "virtue", "patience", "wrath", "scenario", 1, "收到令人生气的信息时，我愿意先保存草稿，稍后再发送。"),
+  q("patience-scenario-02", "virtue", "patience", "wrath", "scenario", -1, "别人还没说完时，我容易打断并直接指出问题。"),
+
+  // 勤勉 · 稳定行动力
+  q("diligence-self-01", "virtue", "diligence", "sloth", "self", 1, "即使动力普通，我也能稳定推进真正重要的事情。"),
+  q("diligence-self-02", "virtue", "diligence", "sloth", "self", 1, "我通常能把已经开始的任务推进到一个清楚的收尾。"),
+  q("diligence-self-03", "virtue", "diligence", "sloth", "self", -1, "我常需要等到心情和状态都很好，才愿意开始行动。"),
+  q("diligence-regulation-01", "virtue", "diligence", "sloth", "regulation", 1, "面对复杂任务，我会把它拆成足够小、可以立即执行的步骤。"),
+  q("diligence-regulation-02", "virtue", "diligence", "sloth", "regulation", -1, "事情一旦变难或进展缓慢，我就很容易放弃原本的节奏。"),
+  q("diligence-scenario-01", "virtue", "diligence", "sloth", "scenario", 1, "遇到想逃避的工作时，我通常愿意先专注五分钟再决定是否继续。"),
+  q("diligence-scenario-02", "virtue", "diligence", "sloth", "scenario", -1, "没有人监督或催促时，我会把重要事项一再延后。"),
 ];
-
-export function getLevel(score) {
-  if (score <= 34) return { key: "low", label: "相对舒缓" };
-  if (score <= 64) return { key: "mid", label: "情境触发" };
-  return { key: "high", label: "较为鲜明" };
-}
-
-export function calculateScores(answers) {
-  const buckets = Object.fromEntries(DIMENSION_ORDER.map((key) => [key, []]));
-
-  QUESTIONS.forEach((question, index) => {
-    const answer = Number(answers[index]);
-    if (!Number.isInteger(answer) || answer < 1 || answer > 5) {
-      throw new Error(`第 ${index + 1} 题缺少有效答案`);
-    }
-    buckets[question.dimension].push(question.reverse ? 6 - answer : answer);
-  });
-
-  return Object.fromEntries(
-    DIMENSION_ORDER.map((key) => {
-      const values = buckets[key];
-      const average = values.reduce((sum, value) => sum + value, 0) / values.length;
-      return [key, Math.round(((average - 1) / 4) * 100)];
-    }),
-  );
-}
-
-export function buildResult(scores) {
-  const ranked = DIMENSION_ORDER.map((key) => ({
-    key,
-    score: scores[key],
-    ...DIMENSIONS[key],
-  })).sort((a, b) => b.score - a.score || DIMENSION_ORDER.indexOf(a.key) - DIMENSION_ORDER.indexOf(b.key));
-
-  const top = ranked[0];
-  const second = ranked[1];
-  const lowest = ranked.at(-1);
-  const average = Math.round(ranked.reduce((sum, item) => sum + item.score, 0) / ranked.length);
-  const spread = top.score - lowest.score;
-  const doubleCore = top.score - second.score <= 10;
-
-  let shapeText = "你的七种倾向有起伏，也保留了调整空间。情境往往比固定标签更重要。";
-  if (spread <= 15) {
-    shapeText = "七个维度较为均衡；此刻的环境与压力，可能比固定性格更影响你的表现。";
-  } else if (spread >= 40) {
-    shapeText = "雷达呈现鲜明峰值；这股拉力可能在某些压力、诱惑或关系场景中格外突出。";
-  }
-
-  let climateText = "你拥有常见且可调节的人性拉力，关键在于看见它们出现前的触发场景。";
-  if (average < 35) {
-    climateText = "整体倾向较温和；这也可能与近期状态或偏克制的作答方式有关。";
-  } else if (average > 64) {
-    climateText = "近期多种冲动或压力反应都较活跃。比起责备自己，更适合先降低负荷，找回小范围的控制感。";
-  }
-
-  return { ranked, top, second, lowest, average, spread, doubleCore, shapeText, climateText };
-}
-
 

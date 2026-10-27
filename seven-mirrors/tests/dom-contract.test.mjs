@@ -26,4 +26,3 @@ test("入口资源使用相对路径，适配 GitHub Pages 子目录", async () 
   assert.doesNotMatch(html, /(?:src|href)="\/(?!\/)/, "不应使用站点根路径资源");
 });
 
-
